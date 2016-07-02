@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0">
+     	<meta charset="UTF-8">
+        <title><%= htmlWebpackPlugin.options.title %></title>
+        <style type="text/css">
+            #copyright {
+                background: none !important;
+            }
+            #copyright svg {
+                max-width: 2.5em;
+                max-height: 2.5em;
+                margin: 5px;
+                border-radius: 5px;
+            }
+            #copyright li:not(:first-child) {
+                margin-top: 10px;
+            }
+            body {
+                overflow: auto !important;
+                margin: 0px;
+                padding:0px;
+            }
+            h1:first-child {
+                margin-top: 0px;
+            }
+        </style>
+    </head>
+    <body class="PortalApp main">
+        <div id="copyright" class="overlay">
+    		<h1>Copyright Info, Credits &amp; Discliaimers</h1>
+    		All content which is authored by Marcos Cousens-Schulz is @Marcos Cousens-Schulz, 2015. This content is licensed under the <a href="http://www.mozilla.org/MPL/2.0/" target="_blank">Mozilla Public License 2.0</a>, unless otherwise specified.
+    		This includes all HTML, CSS &amp; JS code (unless otherwise specified).
+    		<br/>
+    		With the exception of any and all content which is embedded or otherwise sourced from Chatango, including all content hosted on the domain "chatango.com" or it's subdomains.
+    		<br/>
+    		<br/>
+    		Any and all content from Chatango/Located on the "chatango.com" domain or it's subdomains (including the actual chatrooms) was created, is owned, and is subject to licensing by Chatango, unless otherwise specified by Chatango.
+    		<h4>
+    			Notice:
+    		</h4>
+    		The content covered by the MPL 2.0 contains some content which was originally authored by other individuals which has been included on either or a modified or modified basis.
+    		<br/>
+    		<br/>
+    		Where this content has a license which might clash with the MPL 2.0, a link to a copy file/source code for the version in use, whether it be modified or unmodified, labeled "Source" has been included below.
+    		<br/>
+    		<br/>
+    		These "Source" files are not licensed under the MPL 2.0, but rather by their respective licenses, details about the respective license can be found at the link address following the text "from" for each respective resource.
+    		<br/>
+    		<br/>
+    		Additionally, links to other resources which were used or from which site content was derived, but that is not covered by a copyright license can also be found below.
+            <ul>
+    			<li>
+    				Jquery 2.1.4 (included as is from <a href="//code.jquery.com/jquery-2.1.4.min.js">here</a>):
+    				<br/>
+    				made by the <a href="//jquery.com/team" target="_blank">JQuery Team</a>
+                    <br/>
+                    Obtained from <a href="//jquery.com/" target="_blank">jquery.com</a>
+    			</li>
+                <li>
+    				Jquery UI (Resizable):
+    				<br/>
+    				made by the <a href="//jquery.com/team" target="_blank">JQuery Team</a>
+                    <br/>
+                    Obtained from  <a href="//jqueryui.com/" target="_blank">jqueryui.com</a>
+    			</li>
+
+                <!--
+    			<li>
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="42.458px" height="48.681px" viewBox="29.438 26.312 42.458 48.681" enable-background="new 29.438 26.312 42.458 48.681" xml:space="preserve" alt="Cube Icon">
+                        <path d="M71.896,39.973c-0.002-0.206-0.03-0.408-0.084-0.602c-0.014-0.05-0.041-0.093-0.058-0.142
+                    	c-0.049-0.143-0.101-0.284-0.175-0.415c-0.037-0.064-0.09-0.115-0.132-0.177c-0.074-0.104-0.144-0.21-0.234-0.301
+                    	c-0.06-0.058-0.132-0.103-0.196-0.155c-0.084-0.068-0.162-0.146-0.256-0.203L51.869,26.644c-0.741-0.444-1.665-0.444-2.406,0
+                    	L30.572,37.979c-0.095,0.057-0.171,0.135-0.255,0.203c-0.065,0.052-0.139,0.098-0.198,0.155c-0.09,0.091-0.16,0.197-0.233,0.301
+                    	c-0.043,0.06-0.096,0.112-0.133,0.177c-0.074,0.128-0.124,0.268-0.172,0.408c-0.018,0.051-0.047,0.097-0.061,0.148
+                    	c-0.053,0.193-0.082,0.396-0.082,0.602c0,0.001,0,0.003,0,0.003v0.007V60.43c0,0.793,0.401,1.532,1.067,1.963l18.892,12.226
+                    	c0.025,0.017,0.056,0.021,0.082,0.036s0.045,0.039,0.071,0.054c0.098,0.053,0.203,0.08,0.305,0.118
+                    	c0.067,0.025,0.129,0.06,0.197,0.078c0.203,0.055,0.409,0.088,0.616,0.088s0.413-0.033,0.615-0.088
+                    	c0.068-0.02,0.13-0.053,0.197-0.078c0.102-0.038,0.207-0.065,0.304-0.118c0.026-0.015,0.046-0.038,0.071-0.054
+                    	s0.057-0.021,0.082-0.036l18.892-12.226c0.666-0.431,1.067-1.17,1.067-1.963V39.982l-0.002-0.004
+                    	C71.895,39.979,71.896,39.974,71.896,39.973z M50.667,31.372l14.382,8.631l-2.839,1.736l-11.542,7.06l-11.543-7.06l-2.839-1.736
+                    	L50.667,31.372z M34.112,44.152l14.217,8.698v15.508l-14.217-9.199V44.152z M67.221,59.158l-14.218,9.199V52.85l14.218-8.697V59.158
+                    	z"/>
+                    </svg>
+    				<br>
+    				<a href="resources/cube2.svg" target="_blank">Source (svg)</a>
+    				<a href="mini_pro_cubes/cube_black.png" target="_blank">Source (png)</a>
+    				<br>
+    				Cube Icon
+    				<br>
+    				made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com/free-icon/cube-ios-7-interface-symbol_15973" title="Flaticon">flaticon.com</a>
+    			</li>
+        			<li>
+        				Feature detection:
+        				<br>
+        				Modernizr 2.7.1 (Custom Build) | MIT &amp; BSD
+        				<br>
+        				Build: <a href="http://modernizr.com/download/#-borderradius-boxshadow-flexbox-flexboxlegacy-hsla-opacity-rgba-textshadow-cssanimations-csstransforms-csstransforms3d-csstransitions-hashchange-localstorage-inlinesvg-svg-shiv-cssclasses-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-load" target="_blank">http://modernizr.com/download/#-borderradius-boxshadow-flexbox-flexboxlegacy-hsla-opacity-rgba-textshadow-cssanimations-csstransforms-csstransforms3d-csstransitions-hashchange-localstorage-inlinesvg-svg-shiv-cssclasses-teststyles-testprop-testallprops-hasevent-prefixes-domprefixes-load</a>
+        			</li>
+                <li>
+    				Rotating/animated 3d cube (in the top left corner) based on:
+    				<br>
+    				<a href="http://cssdeck.com/labs/simple-css3-3d-cube" target="_blank">http://cssdeck.com/labs/simple-css3-3d-cube</a>
+    			</li>
+    			<li>
+    				<img src="resources/help2.svg" alt="Help Icon">
+    				<br>
+    				<a href="resources/help2.svg" target="_blank">Source</a>
+    				Help Icon
+    				<br>
+    				made by <a href="http://www.flaticon.com/authors/daniel-bruce" title="Daniel Bruce">Daniel Bruce</a> from <a href="http://www.flaticon.com/free-icon/help-circled_3711" title="Flaticon">flaticon.com</a>
+    			</li>
+    			<li>
+    				<img src="resources/hammer2.svg" alt="Hammer Icon">
+    				<br>
+    				<a href="resources/hammer2.svg" target="_blank">Source</a>
+    				<br>
+    				Hammer Icon
+    				<br>
+    				made by <a href="http://www.flaticon.com/authors/dave-gandy" title="Dave Gandy" target="_blank">Dave Gandy</a> from <a href="http://www.flaticon.com/free-icon/legal-hammer_25687" title="Flaticon" target="_blank">flaticon.com</a>
+    			</li>
+    			<li>
+    				<img src="resources/palette2.svg" alt="Palete Icon">
+    				<br>
+    				<a href="resources/palette2.svg" target="_blank">Source</a>
+    				<br>
+    				Palette with Brush Icon
+    				<br>
+    				made by <a href="http://www.freepik.com" title="Freepik" target="_blank">Freepik</a> from <a href="http://www.flaticon.com/free-icon/paint-palette-and-brush_27557" title="Flaticon" target="_blank">flaticon.com</a>
+    			</li>
+    			<li>
+    				<img src="resources/doorway2.svg" alt="Doorway Icon">
+    				<br>
+    				<a href="resources/doorway2.svg" target="_blank">Source</a>
+    				<br>
+    				Doorway Icon
+    				<br>
+    				made by <a href="http://www.flaticon.com/authors/scott-de-jonge" title="Scott de Jonge" target="_blank">Scott de Jonge</a> from <a href="http://www.flaticon.com/free-icon/door-or-window-shape-hole_8641" title="Flaticon" target="_blank">flaticon.com</a>
+    			</li>
+    			<li>
+    				<img src="resources/notepad2.svg" alt="Notepad Icon">
+    				<br>
+    				<a href="resources/notepad2.svg" target="_blank">Source</a>
+    				<br>
+    				Notepad Icon
+    				<br>
+    				made by <a href="http://www.freepik.com" title="Freepik" target="_blank">Freepik</a> from <a href="http://www.flaticon.com/free-icon/notepad-with-spring_17364" title="Flaticon" target="_blank">flaticon.com</a>
+    			</li>
+
+    			<li>
+    				<img src="resources/full_screen2.svg" alt="Full Screen Icon">
+    				<br>
+    				<a href="resources/full_screen2.svg" target="_blank">Source</a>
+    				Full Screen Icon
+    				<br>
+    				made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="www.flaticon.com/free-icon/full-screen_13849" title="Flaticon">flaticon.com</a>
+    			</li>
+            -->
+                <li>
+                    <svg class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    	viewBox="326.27001953125 284.30902099609375 248.62103271484375 416.4000244140625" enable-background="new 0 0 21.783 21.971" xml:space="preserve" alt="Portal Icon">
+                    	<path d="M537.497,589.843c-12.307,25.096-24.01,44.408-35.641,58.804
+                    		c-40.593,50.243-77.133,52.062-100.904,45.292c3.027,0.862-36.441-10.212-56.849-59.435c-4.343-10.475-16.867-44.869-17.505-83.576
+                    		c-0.328-19.936,4.113-62.054,13.879-101.852c5.946-24.231,17.574-62.069,32.417-89.687c9.521-17.714,16.427-27.712,20.837-32.122
+                    		c3.995-3.993,6.035-3.474,4.419,1.411c-1.322,3.994-7.867,13.588-12.366,22.872c-6.728,13.887-24.24,49.926-18.379,43.597
+                    		c2.553-2.758,18.158-35.088,37.703-57.238c18.834-21.346,44.774-53.6,93.125-45.572c23.576,3.915,54.018,28.192,65.711,82.243
+                    		c3.578,16.532,10.947,59.57,6.484,97.792C569.042,484.241,556.587,550.909,537.497,589.843z M547.845,430.623
+                    		c0.082-26.453-11.352-65.364-10.955-61.694c0.317,2.93,2.28,14.966,2.809,27.74c0.66,15.95-0.16,33.058-0.472,35.128
+                    		c-3.431,22.74-8.521,45.034-12.025,52.893c-1.421,3.188-5.479,4.582-4.258-1.877c2.116-11.2,6.941-36.3,7.94-56.336
+                    		c0.064-1.286,2.995-28.818-5.476-54.807c-4.465-13.697-9.37-23.977-15.002-30.964c-8.817-10.939-18.062-14.41-19.803-14.916
+                    		c-9.279-2.701-20.599-2.418-31.695,2.621c-11.39,5.171-24.099,16.171-36.081,30.506c-12.777,15.286-24.219,35.224-33.381,54.174
+                    		c-14.777,30.566-20.804,63.349-20.804,63.349s-5.782,29.379-7.435,53.893c-2.572,38.138,1.624,65.303,8.002,85.492
+                    		c7.35,23.264,17.812,37.157,27.686,46.18c29.352,26.826,62.225,3.916,62.225,3.916s1.111-1.935-0.967-1.006
+                    		c-2.077,0.928-7.572,2.053-7.572,2.053s-28.301,5.88-47.041-18.748c-25.944-34.097-29.396-76.66-29.387-77.156
+                    		c0.107-5.157,2.866-4.67,3.577-1c1.677,8.65,8.718,32.75,18.837,48.255c10.986,16.834,26.154,22.904,26.154,22.904
+                    		s7.809,3.525,17.601,3.357c6.117-0.104,12.493-2.438,19.813-5.542c12.646-5.364,26.626-22.062,38.143-35.589
+                    		c29.549-34.711,42.396-102.179,42.396-102.179S547.742,463.848,547.845,430.623z"/>
+                    </svg>
+                    <br>
+    				<a href="resources/portal2.svg" target="_blank">Source</a>
+    				<br>
+    				Portal Icon
+    				<br>
+    				Extracted from a collection made by <a href="//zeptozephyr.deviantart.com/" title="Zeptozephyr" target="_blank">Zeptozephyr</a> which can be found here <a href="//zeptozephyr.deviantart.com/art/Vectored-Portal-Icons-207347804" title="Flaticon" target="_blank">flaticon.com</a>
+                    <br/>
+                    <strong>
+                        Disclaimer: Portal, Portal 2, and this icon, are the property of Valve, and subject to any such applicable licenses on Portal, Portal 2, Valve, etc. (likely all rights reserved.)
+                    </strong>
+                </li>
+    			<li>
+                    <svg class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    	viewBox="0 0 21.783 21.971" enable-background="new 0 0 21.783 21.971" xml:space="preserve" alt="Share Icon">
+                    	<path d="M17.778,13.964c-1.272,0-2.394,0.606-3.127,1.534l-6.799-3.477c0.089-0.332,0.153-0.675,0.153-1.036
+                    	c0-0.393-0.076-0.763-0.182-1.123l6.769-3.461c0.729,0.97,1.88,1.604,3.187,1.604c2.214,0,4.005-1.791,4.005-4.003
+                    	c0-2.21-1.791-4.002-4.005-4.002c-2.209,0-4.002,1.792-4.002,4.002c0,0.362,0.064,0.706,0.154,1.039L7.134,8.518
+                    	C6.4,7.589,5.276,6.981,4.002,6.981C1.79,6.981,0,8.774,0,10.985s1.79,4.003,4.002,4.003c1.309,0,2.459-0.636,3.191-1.607
+                    	l6.766,3.461c-0.106,0.359-0.183,0.732-0.183,1.126c0,2.211,1.793,4.003,4.002,4.003c2.214,0,4.005-1.792,4.005-4.003
+                    	C21.783,15.755,19.992,13.964,17.778,13.964z"/>
+                    </svg>
+    				<br>
+    				<a href="resources/share2.svg" target="_blank">Source</a>
+    				<br>
+    				Share Icon
+    				<br>
+    				made by <a href="http://www.freepik.com" title="Freepik" target="_blank">Freepik</a> from <a href="http://www.flaticon.com/free-icon/share_14539" title="Flaticon" target="_blank">flaticon.com</a>
+    			</li>
+    			<li>
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    	 width="124px" height="124px" viewBox="0 0 124 124" style="enable-background:new 0 0 124 124;" xml:space="preserve" alt="Menu Icon">
+                    	<g>
+                    		<path d="M112,6H12C5.4,6,0,11.4,0,18s5.4,12,12,12h100c6.6,0,12-5.4,12-12S118.6,6,112,6z"/>
+                    		<path d="M112,50H12C5.4,50,0,55.4,0,62c0,6.6,5.4,12,12,12h100c6.6,0,12-5.4,12-12C124,55.4,118.6,50,112,50z"/>
+                    		<path d="M112,94H12c-6.6,0-12,5.4-12,12s5.4,12,12,12h100c6.6,0,12-5.4,12-12S118.6,94,112,94z"/>
+                    	</g>
+                    </svg>
+    				<br>
+    				<a href="resources/menu2.svg" target="_blank">Source</a>
+                    <br/>
+    				Menu Icon
+    				<br>
+    				made by <a href="resources/http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>
+    			</li>
+                <li>
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    	 viewBox="0 0 365.368 365.368" style="enable-background:new 0 0 365.368 365.368;" xml:space="preserve" alt="Resize Icon">
+                    <g>
+                    	<path d="M363.171,177.381L311.1,125.309c-1.406-1.407-3.314-2.197-5.303-2.197
+                    		c-1.989,0-3.897,0.79-5.303,2.197l-14.143,14.143c-1.407,1.406-2.197,3.314-2.197,5.303c0,1.989,0.79,3.897,2.197,5.303
+                    		l15.126,15.125h-52.543v-95.5c0-4.142-3.358-7.5-7.5-7.5h-20c-4.142,0-7.5,3.358-7.5,7.5v226c0,4.142,3.358,7.5,7.5,7.5h20
+                    		c4.142,0,7.5-3.358,7.5-7.5v-95.5h52.543l-15.126,15.126c-1.407,1.406-2.197,3.314-2.197,5.303c0,1.989,0.79,3.897,2.197,5.303
+                    		l14.143,14.143c1.406,1.407,3.314,2.197,5.303,2.197c1.989,0,3.897-0.79,5.303-2.197l52.071-52.071
+                    		C366.1,185.058,366.1,180.309,363.171,177.381z"/>
+                    	<path d="M143.934,62.184h-20c-4.142,0-7.5,3.358-7.5,7.5v95.5H63.891l15.126-15.125
+                    		c2.929-2.929,2.929-7.677,0-10.606l-14.142-14.143c-1.407-1.406-3.315-2.197-5.304-2.197c-1.989,0-3.897,0.79-5.303,2.197
+                    		L2.197,177.381C0.79,178.787,0,180.695,0,182.684c0,1.989,0.79,3.897,2.197,5.303l52.072,52.071
+                    		c1.407,1.407,3.314,2.197,5.303,2.197c1.989,0,3.897-0.79,5.304-2.197l14.142-14.143c2.929-2.929,2.928-7.678,0-10.606
+                    		l-15.126-15.126h52.543v95.5c0,4.142,3.358,7.5,7.5,7.5h20c4.142,0,7.5-3.358,7.5-7.5v-226
+                    		C151.434,65.542,148.076,62.184,143.934,62.184z"/>
+                    </g>
+                    </svg>
+    				<br>
+    				<a href="resources/resize_original_base.svg" target="_blank">Source</a>
+                    <br/>
+                    Resize Icon
+                    <br/>
+                    made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> and is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
+                </li>
+                <li>
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                    	 viewBox="0 0 303.596 303.596" style="enable-background:new 0 0 303.596 303.596;" xml:space="preserve" alt="Revert Icon">
+                        <path d="M273.193,62.099C245.08,25.376,202.332,4.314,155.911,4.314c-32.636,0-63.584,10.485-89.5,30.323
+                        	c-9.377,7.179-17.86,15.48-25.245,24.642l-6.585-37.299c-0.721-4.079-4.615-6.807-8.69-6.082L6.196,19.374
+                        	c-1.959,0.346-3.7,1.456-4.841,3.085c-1.141,1.63-1.587,3.645-1.241,5.604l15.646,88.629c0.643,3.638,3.807,6.198,7.377,6.198
+                        	c0.433,0,0.872-0.038,1.313-0.116l88.63-15.646c4.079-0.72,6.802-4.61,6.082-8.689l-3.477-19.695
+                        	c-0.346-1.959-1.455-3.7-3.085-4.841c-1.63-1.141-3.645-1.586-5.604-1.241l-36.933,6.52c5.195-6.14,11.075-11.741,17.624-16.754
+                        	c19.762-15.127,43.361-23.122,68.247-23.122c35.419,0,68.028,16.063,89.469,44.069c18.266,23.86,26.146,53.406,22.19,83.194
+                        	c-3.957,29.789-19.277,56.254-43.138,74.519c-19.818,15.171-43.38,23.19-68.139,23.19c-4.996,0-10.062-0.336-15.057-0.999
+                        	c-29.788-3.956-56.253-19.275-74.519-43.137c-11.118-14.523-18.59-31.659-21.609-49.556c-0.331-1.961-1.428-3.711-3.049-4.864
+                        	c-1.62-1.153-3.634-1.613-5.595-1.284l-19.721,3.327c-4.084,0.689-6.836,4.559-6.148,8.643c3.963,23.495,13.759,45.975,28.33,65.009
+                        	c23.948,31.284,58.647,51.37,97.702,56.557c6.534,0.868,13.165,1.308,19.708,1.308c32.486,0,63.39-10.514,89.369-30.402
+                        	c31.285-23.948,51.371-58.647,56.558-97.703C307.475,132.121,297.143,93.383,273.193,62.099z"/>
+                    </svg>
+    				<br>
+    				<a href="resources/reload2.svg" target="_blank">Source</a>
+                    Revert Icon
+                    <div>Icons made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> and is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
+                </li>
+    		</ul>
+    	</div>
+    <body>
+</html>

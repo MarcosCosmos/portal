@@ -1,0 +1,566 @@
+$headerCollapsedHeight: 52px;
+@keyframes loader_spinner {
+    0% {
+        transform:rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+//apply the style seperately to the nesting.
+.PortalApp {
+    position: absolute;
+    min-height: 100% !important;
+    min-width: 100% !important;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    overflow: hidden;
+//override chatangos default of center?
+    text-align: left;
+}
+
+//default to inherit
+.PortalApp button, .PortalApp a, .PortalApp input {
+    color:inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    fill:inherit;
+}
+
+.PortalApp a {
+    text-decoration: underline;;
+    &:hover {
+        font-style: italic;
+    }
+}
+
+
+.PortalApp button, .PortalApp input {
+    background: none;
+    border: none;
+}
+
+.PortalApp button svg {
+    vertical-align: middle;
+}
+
+.PortalApp select {
+    min-height: initial;
+}
+
+.PortalApp .absoluteLayer {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+}
+.PortalApp .cover {
+    @extend .absoluteLayer;
+    z-index: 200;
+}
+.PortalApp .backgroundLayer {
+    @extend .absoluteLayer;
+    z-index: -1;
+}
+.PortalApp .loaderSpinner {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    svg {
+        flex-shrink: 1;
+        animation: loader_spinner 2s infinite ease-in-out;
+        width: 30px;
+        height: 30px;
+    }
+    &.large svg {
+        width: 60%;
+        height: 60%;
+    }
+}
+.PortalApp .header {
+    width: 100%;
+    position: absolute;
+    z-index: 150;
+    top: 0px;
+    left: 0px;
+    transition: max-height ease 0.25s;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    max-height: calc(100%);
+    padding:5px;
+    box-sizing: border-box;
+}
+.PortalApp .header .headerLogo {
+    > * {
+        width: 35px;
+        height: 35px;
+    }
+    margin-bottom: calc(#{$headerCollapsedHeight} - 45px);
+    vertical-align: top;
+}
+.PortalApp .header:not(:hover):not([data-locked-open=true]) {
+    max-height: calc(#{$headerCollapsedHeight});
+}
+.PortalApp .header .appInfoWrapper {
+    display: inline-block;
+    vertical-align: top;
+    > * {
+        display: inline-block;
+    }
+}
+.PortalApp .header .appInfo {
+    font-weight: bold;
+    h1 {
+        font-size: 1.5em;
+        display: inline-block;
+        margin: 5px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        margin-left: 0px;
+    }
+}
+
+.PortalApp .header .appInfo .version {
+    font-size: 0.9em;
+}
+
+.PortalApp .header .headerSubWrapper {
+    display: flex;
+    flex-wrap:wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1 1 auto;
+}
+
+.PortalApp .header .headerNav, .PortalApp .header .controlsContainer, .PortalApp .header .pagesNav {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    flex: 1 1 auto;
+}
+.PortalApp .header .controlsContainer, .PortalApp .header .pagesNav {
+    > :not(div) {
+        margin: 5px;
+    }
+    > * > svg {
+        width: 1.5em;
+        height: 1.5em;
+    }
+}
+.PortalApp .header .menuButton {
+    padding: 0px;
+    margin-left: 5px;
+    flex: 0 0 auto;
+    svg {
+        max-width: 35px;
+        max-height: 35px;
+    }
+    &::before {
+        display: block;
+        content:"\A";
+        white-space: pre;
+        max-height: calc(0px);
+        opacity: 0;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+    }
+}
+
+.PortalApp .header[data-locked-open=true] .menuButton::before {
+    max-height: calc(100%);
+}
+
+
+
+.PortalApp .buttonRule:not(.menuButton) {
+    font-weight: bold;
+    &:not(.AddBoxButton) {
+        transition: max-width ease 0.3s, max-height ease 0.3s;
+    }
+    &:not(.disabledControl) {
+        cursor: pointer;
+    }
+    &[disabled=true], &[disabled]:not([disabled=false]) {
+        @extend .disabledControl;
+    }
+}
+
+.PortalApp .fieldRule {
+    min-width: 3em;
+}
+
+.PortalApp .buttonRule:not(.menuButton), .PortalApp .fieldRule {
+    padding: 2px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.PortalApp .popupCover {
+    position: absolute;
+    bottom:0px;
+    left:0px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content:center;
+    z-index: 125;
+    overflow-y: hidden;
+    max-height: 100%;
+}
+.PortalApp .popupCover > .backgroundLayer
+{
+    opacity: 0.5;
+}
+.PortalApp .popupCover > div:not(.backgroundLayer) {
+    margin-top: 0%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: no-wrap;
+    justify-content: center;
+    margin-top: $headerCollapsedHeight;
+}
+.PortalApp .popupCover .popupMainWrapper {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 auto;
+    padding:5px;
+    margin: 5px;
+}
+/*
+.PortalApp .popupCover .popupMainWrapper a {
+     text-decoration: underline;
+}
+*/
+
+.PortalApp .popupCover .popupControls {
+    text-align: right;
+}
+
+.PortalApp .popupCover.maxGrowthPopup > :not(.backgroundLayer), .PortalApp .popupCover.maxGrowthPopup .popupMainWrapper {
+    flex: 1 1 auto;
+}
+.PortalApp .popupCover.maxGrowthPopup .popupContentSection {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content:stretch;
+    align-items:stretch;
+    text-align: left;
+}
+
+.PortalApp .popupCover .promptConfirmButton {
+    float: left;
+}
+
+.PortalApp .popupCover .promptCancelButton {
+    float: right;
+}
+
+.PortalApp .page > div:not(.backgroundLayer) {
+    -webkit-transition: all ease 1s;
+    transition: all ease 1s;
+}
+.PortalApp .page[data-is-open=false] {
+    z-index: 124;
+    -webkit-transition: max-height ease 0s;
+    transition: max-height ease 0s;
+    transition-delay: 1s;
+    max-height: 0%;
+    > .backgroundLayer {
+        display: none;
+    }
+    > div:not(.backgroundLayer)
+    {
+        margin-top: 100%;
+    }
+}
+
+.PortalApp .shareLink, .PortalApp .shareConfig, .PortalApp .importTextArea {
+    display: inline-block;
+    resize: both;
+    padding: 2px;
+    word-break: break-all;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.PortalApp .BoxLayoutManager {
+    margin-top: $headerCollapsedHeight;
+    overflow: auto;
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    flex: 1 1 auto;
+}
+.PortalApp .BoxLayoutManager[data-editing-enabled=true] {
+    padding: 5px;
+}
+.PortalApp .BoxLayoutManager [data-auto-size=true] {
+    > .innerOfPair > .boxResizeElm .boxAutoSizeButton {
+        @extend .disabledControl;
+    }
+}
+.PortalApp .BoxLayoutManager [data-auto-size=false] {
+    flex: 0 0 auto !important;
+}
+.PortalApp .BoxLayoutManager .ContainerBox {
+    flex: 1 0 auto;
+    display: inline-flex;
+    justify-content: stretch;
+    align-items: stretch;
+}
+.PortalApp .BoxLayoutManager .ContainerBox.flexColumn {
+    flex-direction: row;
+    > .innerOfPair
+    {
+        flex-direction: column;
+        > .AddBoxButton:not(:only-child) {
+            max-height: calc(2em);
+        }
+        > .AddBoxButton:not(:first-of-type)
+        {
+            margin-top: 5px;
+        }
+        > .AddBoxButton:not(:last-of-type) {
+            margin-bottom: 5px;
+        }
+        > .disabledControl, > .boxResizeElm > .disabledControl {
+            max-height: calc(0px) !important;
+        }
+    }
+}
+.PortalApp .BoxLayoutManager .ContainerBox.flexRow {
+    flex-direction: column;
+    > .innerOfPair
+    {
+        flex-direction: row;
+        > .AddBoxButton:not(:only-child) {
+            max-width: calc(2em);
+        }
+        > .AddBoxButton:not(:first-of-type) {
+            margin-left: 5px;
+        }
+        > .AddBoxButton:not(:last-of-type) {
+            margin-right: 5px;
+        }
+        > .disabledControl, > .boxResizeElm > .disabledControl {
+            max-width: calc(0px) !important;
+        }
+    }
+}
+.PortalApp .BoxLayoutManager .AddBoxButton {
+    flex: 1 0 auto;
+    &[data-is-active-drop-zone=true] {
+        border-width: 2px;
+        border-style: dashed;
+        color: transparent !important;
+    }
+}
+.PortalApp .BoxLayoutManager  .buttonRule {
+    max-width: calc(100%);
+    max-height: calc(100%);
+}
+.PortalApp .BoxLayoutManager .ContainerBox.outerOfPair:not(:only-of-type) {
+    &.flexRow {
+        > .innerOfPair
+        {
+            > .boxResizeElm {
+                flex-direction: column;
+                min-height: 80px;
+                width: 20px;
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+        }
+    }
+    &.flexColumn {
+        > .innerOfPair
+        {
+            > .boxResizeElm {
+                flex-direction: row;
+                min-width: 80px;
+                height: 20px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
+.PortalApp .BoxLayoutManager[data-editing-enabled=false]
+{
+    .dragChatElm, .AddBoxButton, .boxResizeElm
+    {
+        @extend .disabledControl;
+    }
+}
+.PortalApp .BoxLayoutManager .dragChatElm[draggable=false]
+{
+    @extend .disabledControl;
+}
+.PortalApp .BoxLayoutManager .disabledControl {
+    border: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+}
+
+.PortalApp .BoxLayoutManager .boxResizeElm {
+    flex: 0 0 auto;
+    position: relative;
+    z-index:10;
+    display: inline-flex;
+    order: 10;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+}
+.PortalApp .BoxLayoutManager .boxResizeElm .buttonRule {
+    border: none;
+}
+.PortalApp .BoxLayoutManager .boxResizeElm .boxAutoSizeButton {
+    order:9;
+}
+.PortalApp .BoxLayoutManager .boxResizeElm .boxAutoSizeButton svg {
+    height: 1.5em;
+    width:1.5em;
+    vertical-align: middle;
+}
+.PortalApp .BoxLayoutManager .boxResizeElm .ui-resizable-handle
+{
+    font-size: inherit;
+    width: auto;
+    height: auto;
+    transform-origin: center;
+    position: absolute;
+    overflow: hidden;
+    &.ui-resizable-w {
+        transform: none;
+        left: 0px !important;
+    }
+    &.ui-resizable-n {
+        top: 0px !important;
+        transform: rotateZ(90deg);
+    }
+    &.ui-resizable-e {
+        transform: rotateZ(180deg);
+        order:2;
+        right: 0px !important;
+    }
+    &.ui-resizable-s {
+        transform: rotateZ(270deg);
+        order:2;
+        bottom: 0px !important;
+    }
+    svg {
+        height: 1.5em;
+        width: 1.5em;
+        vertical-align: middle;
+    }
+}
+
+
+.PortalApp .ChatBox {
+    min-width: 120px;
+/*
+the min height of a chat + 1.2em which is the height of inputs + 2px in border + 2x2px in padding? NOTE: THIS MUST BE KEPT ACCURATE.
+*/
+    min-height: calc(200px + 1.2em + 6px);
+    display: inline-flex;
+    flex-direction: column;
+    flex: 1 0 auto;
+    justify-content: stretch;
+    align-items: stretch;
+}
+.PortalApp .ChatBox[data-is-active-drag-object=true] {
+    opacity: 0;
+}
+.PortalApp .ChatBox .chatBoxControls {
+    margin-left: 5px;
+    margin-right: 5px;
+    display: flex;
+    flex-wrap:nowrap;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    overflow-x: hidden;
+}
+.PortalApp .ChatBox .chatBoxControls .buttonRule, .PortalApp .ChatBox .chatBoxControls .fieldRule {
+    height: 1.2em !important;
+    box-sizing: content-box;
+}
+.PortalApp .ChatBox .chatBoxControls > :not(:first-child):not(.disabledControl) {
+    margin-left: 5px;
+}
+.PortalApp .ChatBox .chatBoxControls .groupIDInput {
+    flex: 1 1 auto;
+    width: 3em;
+}
+.PortalApp .ChatBox .chatBoxControls .dragChatElm, .PortalApp .ChatBox .chatBoxControls button {
+    flex: 0 0 auto;
+}
+.PortalApp .ChatBox .chatBoxControls .dragChatElm {
+    position: relative;
+    .antiSelectionCover {
+        @extend .absoluteLayer;
+        z-index: 1;
+    }
+}
+.PortalApp .ChatBox .chatBoxControls .deleteButton {
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+.PortalApp .ChatBox .chatBoxControls .disabledControl
+{
+    max-width: calc(0px);
+}
+.PortalApp .ChatBox .chatBoxControls > .button {
+    line-height: 1em;
+}
+.PortalApp .ChatBox .chatBoxControls > :not(.button) {
+    line-height: 1em;
+}
+.PortalApp .ChatBox .chatEmbed {
+    display: flex;
+    flex-direction: row;
+    flex: 1 0 auto;
+    justify-content: stretch;
+    align-items: stretch;
+    position: relative;
+    > * {
+        flex: 1 0 auto;
+        position: absolute; /*HACK: PREVENTS THE CHAT FROM DOING WEIRD THINGS TO MAKE THE MIN SIZE 300PX*/
+    }
+}
+
+
+.PortalApp .importForm {
+    width: 100%;
+    box-sizing: border-box;
+    button[type=submit]
+    {
+        float: right;
+    }
+}
+.PortalApp .importTextArea {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+//dirty workaround, hide unwanted UI resize handlers
+.PortalApp .ui-hide-handler {
+    width:0 !important;
+    height:0 !important;
+}
