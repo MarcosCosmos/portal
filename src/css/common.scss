@@ -32,9 +32,9 @@ $headerCollapsedHeight: 52px;
 }
 
 .PortalApp a {
-    text-decoration: underline;;
+    text-decoration: underline;
     &:hover {
-        font-style: italic;
+        text-decoration-style: dashed;
     }
 }
 

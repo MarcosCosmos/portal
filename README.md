@@ -24,7 +24,7 @@ By pressing the "Clear Configuration" menu button, you can delete your saved lay
 Sometimes you may need to refresh the content-boxes, maybe there was a glitch, or, for example, busy chatango chatrooms left open all day may be occupying too much RAM.
 
 #Advanced Usage
-##Sharing your portal
+##Sharing your configuration
 By hitting the Share menu button (it has a share icon), you can get a link that can be used to bookmark a layout and configuration, or send it to a friend.
 
 For advanced users, the popup that appears when you click the Share button will also provide a JSON string which contains all the settings in the current configuration, and the current layout.

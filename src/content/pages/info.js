@@ -6,15 +6,19 @@ module.exports = {
 	pageGenerator: (appCore) => {
 		var Info = new Page(
 			'Instructions & Info',
-			$(
-				'<iframe>',
-				{
-					src: 'https://github.com/MarcosCosmos/Portal#readme',
-					style:'border:none;-webkit-flex: 1 1 auto;flex: 1 1 auto;'
-				}
-			)
+			''
 		);
-		Info.DOMRoot.addClass('maxGrowthPopup');
+		//not really a normal page, opens an external link, this is probably kind of hackish, might just be temporary..
+		Info.navItem = $('<a>',
+			{
+				class: 'pageNavItem buttonRule',
+				href: 'https://github.com/MarcosCosmos/Portal#what-is-this',
+				target: '_blank',
+				text: 'Instructions & Info',
+				'data-selected': false
+			}
+		);
+		// Info.DOMRoot.addClass('maxGrowthPopup');
 
 		// Credits.refresh = function()
 		// {

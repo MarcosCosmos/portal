@@ -27,5 +27,6 @@
         // loaderScript.type='text/javascript';
         // loader.appendChild(loaderScript);
         document.getElementsByTagName('html')[0].innerHTML='<iframe style="border:0;position:absolute;top:0;left:0;height:100%;width:100%;" src="//dl.dropboxusercontent.com/u/37122446/chatango/portal/index.html"></iframe>';
+        document.title = "Portal: A Chatango Multi-Chat App";
     }
 )();
