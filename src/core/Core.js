@@ -18,6 +18,7 @@ import {controlGenerators as menuControlGenerators} from '../content/menu/menuCo
 import {pageGenerator as creditsPageGenerator} from '../content/pages/credits.js';
 import {pageGenerator as importPageGenerator} from '../content/pages/import.js';
 import {pageGenerator as sharePageGenerator} from '../content/pages/share.js';
+import {pageGenerator as infoPageGenerator} from '../content/pages/info.js';
 
 //TODO: CHANGLOG, REMEMBER THAT 3.4 WAS THE JS CLEAN + CONFIG SPLIT, 3.5 WAS THE CSS FIX + SWITCH TO SCSS
 //TODO: Revision/refactoring? consider simplifying the way locking is arranged through the scripts for example
@@ -83,6 +84,9 @@ class Core {
 
         //generate the pages
         let eachPage = creditsPageGenerator(this);
+        this.DOMRoot.append(eachPage.DOMRoot);
+        this.header.addPages(eachPage);
+        eachPage = infoPageGenerator(this);
         this.DOMRoot.append(eachPage.DOMRoot);
         this.header.addPages(eachPage);
         eachPage = importPageGenerator(this);

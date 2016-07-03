@@ -7,7 +7,7 @@ let creditsHTMLPage = require('file?emitFile=false&name=[name].[ext]!./credits.h
 module.exports = {
 	pageGenerator: (appCore) => {
 		var Credits = new Page(
-			'&copy;Author, Credits &amp; Discliaimers',
+			'&copy;Marcos C-S, 2016',
 			$(
 				'<iframe>',
 				{
