@@ -72,6 +72,11 @@ class Page extends Popup
 		this.navItem.attr('data-selected', false);
 		Popup.removeOpenPopup(this);
 	}
+
+	refresh()
+	{
+		
+	}
 }
 
 module.exports =
