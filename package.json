@@ -41,6 +41,7 @@
   "dependencies": {
     "babel-polyfill": "^6.9.1",
     "babel-runtime": "^6.9.2",
+    "bundle-loader": "^0.5.4",
     "extract-text-webpack-plugin": "^1.0.1",
     "jquery": "^3.0.0",
     "jquery-ui": "^1.10.5"

@@ -63,7 +63,7 @@ class Theme extends Encodable
 			constructorName: 'Theme',
 			chatango:
 			{
-				roomType: this.roomType,
+				roomType: this.chatango.roomType,
 				styles: {}
 			},
 			cssText: this.cssText

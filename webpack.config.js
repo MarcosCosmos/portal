@@ -3,13 +3,14 @@ var path = require("path");
 var autoprefixer = require('autoprefixer');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var publicPath = require('./publicPath.js').publicPath;
 module.exports =
 {
 	target: 'web',
 	entry:
 	{
-		loader: ['./src/init/loader.js'],
-		// 'ch-loader': './src/init/ch-loader.js',
+		loader: './src/init/loader.js',
+		'ch-loader': './src/init/ch-loader.js',
 		framedPage: './src/core/layout/popup/framedPage.js',
 		jquery: ['jquery', 'jquery-ui/core.js', 'jquery-ui/draggable.js', 'jquery-ui/droppable.js', 'jquery-ui/resizable.js', 'style!css!modules/jquery-ui/themes/base/jquery.ui.core.css', 'style!css!modules/jquery-ui/themes/base/jquery.ui.theme.css','style!css!modules/jquery-ui/themes/base/jquery.ui.resizable.css'],
 	},
@@ -17,7 +18,8 @@ module.exports =
 	{
 		path: './bin',
 		filename: '[name].js',
-		library: ['PortalApp']
+		library: ['PortalApp'],
+		publicPath: publicPath
 	},
 	module:
 	{
@@ -76,7 +78,7 @@ module.exports =
 			chunks: ['framedPage', 'jquery']
 		}),
 
-		new webpack.optimize.CommonsChunkPlugin({name:'jquery', minChunks:Infinity}),
+		new webpack.optimize.CommonsChunkPlugin({name:'jquery', chunks:['loader', 'ch-loader', 'framedPage', 'jquery'], minChunks:Infinity, async:true}),
 		new ExtractTextPlugin('common.css', {allChunks: true})
 	],
 	resolve : {

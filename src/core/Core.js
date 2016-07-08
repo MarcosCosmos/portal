@@ -303,7 +303,11 @@ class Core {
 
     loadSavedConfiguration()
     {
-
+        function clearCacheWithNotice()
+        {
+            console.log('NOTICE: As something went wrong whilst loading the stored configuration, the configuration\'s entry in localStorage will be removed.');
+            localStorage.removeItem('the_portal/configuration');
+        }
         var success = false;
         var savedConfigText = localStorage.getItem('the_portal/configuration');
         if(savedConfigText != null)
@@ -312,14 +316,17 @@ class Core {
             {
                 let config = JSON.parse(savedConfigText);
                 success = this.loadConfiguration(config);
+                if(!success)
+                {
+                    clearCacheWithNotice();
+                }
             }
             catch (e)
             {
-                console.log('NOTICE: As something went wrong whilst loading the stored configuration, the configuration\'s entry in localStorage will be removed.');
-                localStorage.removeItem('the_portal/configuration');
                 console.group();
                 console.error(e);
                 console.groupEnd();
+                clearCacheWithNotice();
             }
         }
         return success;

@@ -50,6 +50,6 @@ The Import page also accepts JSON strings representing a configuration, in the s
 #Licensing Information (Credits)
 All content which is authored by Marcos Cousens-Schulz is \@Marcos Cousens-Schulz, 2015. This content is licensed under the Mozilla Public License 2.0, unless otherwise specified. This includes all HTML, CSS & JS code (unless otherwise specified).
 
-This app also contains some content which was originally authored by other individuals which has been included on either or a modified or modified basis.
+This app also contains some content which was originally authored by other individuals which has been included on either an identical or modified basis.
 
 With the exception of the icon from Portal 2 (the game), the icons used in this app were made by Freepik, and are licensed under CC BY 3.0.

@@ -136,14 +136,14 @@ module.exports = {
 				var self = this;
 				//tinyify the url and include it into the page when it's ready
 				$.ajax({
-				  url: 'https://api-ssl.bitly.com/v3/shorten?access_token=e1824c0eb367227b87c223718f83e5997092034e&longUrl=https://portal.chatango.com/config/theme?' + encodeURIComponent(sharePage.themeText),
+				  url: 'https://api-ssl.bitly.com/v3/shorten?access_token=e1824c0eb367227b87c223718f83e5997092034e&longUrl=https://developingcosmos.com/portal/config/theme?' + encodeURIComponent(sharePage.themeText),
 				}).done(
 					function( data )
 					{
 						self.themeID = data.data.hash;
 						//tinyify the url and include it into the page when it's ready
 						$.ajax({
-						  url: 'https://api-ssl.bitly.com/v3/shorten?access_token=e1824c0eb367227b87c223718f83e5997092034e&longUrl=https://portal.chatango.com/config/layout?' + encodeURIComponent(sharePage.layoutText),
+						  url: 'https://api-ssl.bitly.com/v3/shorten?access_token=e1824c0eb367227b87c223718f83e5997092034e&longUrl=https://developingcosmos.com/portal/config/layout?' + encodeURIComponent(sharePage.layoutText),
 						}).done(
 							function( data )
 							{

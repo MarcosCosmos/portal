@@ -1,6 +1,3 @@
-//export the ch-loader file without changes.
-require('file?name=[name].[ext]!./ch-loader.js');
-
 module.exports = {
     initialise: function initialise()
     {
