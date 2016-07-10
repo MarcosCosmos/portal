@@ -37,17 +37,34 @@ let controlGenerators =
 			'click',
 			function()
 			{
-				if (appCore.boxLayoutManager.editingEnabled)
+				if (appCore.viewMode == 'edit')
 				{
-					appCore.boxLayoutManager.disableLayoutEditing();
+					appCore.setViewMode('standard');
 					appCore.saveConfiguration();
 					$(this).text('Edit Layout');
 				}
 				else
 				{
-					appCore.boxLayoutManager.enableLayoutEditing();
+					appCore.setViewMode('edit');
 					$(this).text('Save Layout');
 				}
+			}
+		);
+	},
+
+	/*minimalViewButton*/ (appCore) => {
+		return $(
+			'<button>',
+			{
+				type: 'button',
+				class: 'minimalViewButton buttonRule',
+				text: 'Minimal View'
+			}
+		).on(
+			'click',
+			function()
+			{
+				appCore.setViewMode('minimal');
 			}
 		);
 	},

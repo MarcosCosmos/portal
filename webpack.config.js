@@ -18,7 +18,6 @@ module.exports =
 	{
 		path: './bin',
 		filename: '[name].js',
-		library: ['PortalApp'],
 		publicPath: publicPath
 	},
 	module:
@@ -75,7 +74,7 @@ module.exports =
 			title: 'Copyright & Credits - Portal: A Chatango Multi-Chat App',
 			filename: 'credits.html',
 			template: './src/content/pages/credits.html',
-			chunks: ['framedPage', 'jquery']
+			chunks: ['framedPage','jquery']
 		}),
 
 		new webpack.optimize.CommonsChunkPlugin({name:'jquery', chunks:['loader', 'ch-loader', 'framedPage', 'jquery'], minChunks:Infinity, async:true}),

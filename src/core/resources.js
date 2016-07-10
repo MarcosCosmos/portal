@@ -103,8 +103,21 @@ module.exports = {
             class: 'loaderSpinner',
             html: 'Loading...<br/>'
         }
-    )
+    ),
+	viewModes:
+	[
+		'standard',
+		'edit',
+		'minimal'
+	],
+	defaults:
+	{
+		viewMode: 'standard',
+		config: {settings: {}}
+	}
 };
 module.exports.loader.append(module.exports.logo);
 
-module.exports.themes.default = module.exports.themes.light;
+module.exports.defaults.theme = module.exports.themes.light;
+
+module.exports.defaults.config.settings.viewMode = module.exports.defaults.viewMode;

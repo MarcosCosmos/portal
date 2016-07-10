@@ -16,10 +16,11 @@ class Box extends Encodable
 
     static lockElms(targetElms)
     {
-        targetElms.prop('disabled', true);
+        console.log(targetElms);
         targetElms.each(
             function()
             {
+                $(this).prop('disabled', true);
                 var locks = $(this).data('enableLocks');
                 if(isNaN(locks) || locks < 0)
                 {

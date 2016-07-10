@@ -1,6 +1,5 @@
 import 'babel-polyfill';
 
-import {info} from './info.js';
 import resources from './resources.js';
 import util from '../common/util.js';
 
@@ -13,12 +12,6 @@ import {ChatBox} from '../content/embedders/ChatBox.js';
 import {Popup} from './layout/popup/Popup.js';
 
 import '../css/common.scss';
-
-import {controlGenerators as menuControlGenerators} from '../content/menu/menuControls.js';
-import {pageGenerator as creditsPageGenerator} from '../content/pages/credits.js';
-import {pageGenerator as importPageGenerator} from '../content/pages/import.js';
-import {pageGenerator as sharePageGenerator} from '../content/pages/share.js';
-import {pageGenerator as infoPageGenerator} from '../content/pages/info.js';
 
 //TODO: CHANGLOG, REMEMBER THAT 3.4 WAS THE JS CLEAN + CONFIG SPLIT, 3.5 WAS THE CSS FIX + SWITCH TO SCSS
 //TODO: Revision/refactoring? consider simplifying the way locking is arranged through the scripts for example
@@ -40,6 +33,8 @@ class Core {
     // if not speficied a default div is created, either way the app ensures that required classes are attached
     constructor(config, prioritiseUserConfig, DOMRoot, callback)
     {
+        this.viewMode = null; //default to null so that the correct state can be set from scratch in the first call to setViewMode(); the selected view mode will come from the default config
+
         var urlConfig, prioritiseSavedConfig;
         if(DOMRoot)
         {
@@ -54,7 +49,6 @@ class Core {
             }
         }
 
-        var self = this;
         $(window).on(
             'keypress',
             function(e)
@@ -66,40 +60,19 @@ class Core {
             }
         )
 
-        this.header = new Header(info.version, resources.logo, info.title, info.flavorText);
-        this.DOMRoot.append(self.header.DOMRoot);
+        this.header = new Header(this); //header will generate it's contents
+        this.DOMRoot.append(this.header.DOMRoot);
 
         //generate the theme
-        self.theme = new Theme();
-        $('head').append(self.theme.DOMRoot);
+        this.theme = new Theme();
+        $('head').append(this.theme.DOMRoot);
         //send config down to the prototype of ChatBox so it can have updateable access without having to cascade storage and updates.
-        ChatBox.prototype.theme = self.theme.chatango;
-
-        //generate controls
-        for(let i = 0; i < menuControlGenerators.length; ++i)
-        {
-            this.header.addControls(menuControlGenerators[i](this));
-        }
-
-
-        //generate the pages
-        let eachPage = creditsPageGenerator(this);
-        this.DOMRoot.append(eachPage.DOMRoot);
-        this.header.addPages(eachPage);
-        eachPage = infoPageGenerator(this);
-        this.DOMRoot.append(eachPage.DOMRoot);
-        this.header.addPages(eachPage);
-        eachPage = importPageGenerator(this);
-        this.DOMRoot.append(eachPage.DOMRoot);
-        this.header.addPages(eachPage);
-        eachPage = sharePageGenerator(this);
-        this.DOMRoot.append(eachPage.DOMRoot);
-        this.header.addPages(eachPage);
+        ChatBox.prototype.theme = this.theme.chatango;
 
         //the other stuff
-        self.boxLayoutManager = new BoxLayoutManager();
-        self.boxLayoutManager._saveConfiguration = function(){self.saveConfiguration()}; //override/assign it a function for doing the saving that uses the one in self class.
-        self.DOMRoot.append(self.boxLayoutManager.DOMRoot);
+        this.boxLayoutManager = new BoxLayoutManager();
+        this.boxLayoutManager._saveConfiguration = function(){this.saveConfiguration()}; //override/assign it a function for doing the saving that uses the one in self class.
+        this.DOMRoot.append(this.boxLayoutManager.DOMRoot);
 
         //load the configuration
         prioritiseUserConfig = typeof prioritiseUserConfig != 'undefined' ? prioritiseUserConfig : true;
@@ -124,21 +97,21 @@ class Core {
         //prioritise url config over saved configs, later on add capacity to merge configs perhaps?
         if(prioritiseUserConfig == true)
         {
-            self.tryUrlConfig(
-                function(success)
+            this.tryUrlConfig(
+                (success) =>
                 {
                     if(success)
                     {
-                        self.boxLayoutManager.disableLayoutEditing();
-                        $('.layoutEditButton').text("Edit Layout"); //quick/cheap method for fixing the button label.. fix this when changing to the 'modes' model
+                        // this.boxLayoutManager.disableLayoutEditing();
+                        // $('.layoutEditButton').text("Edit Layout"); //quick/cheap method for fixing the button label.. fix this when changing to the 'modes' model
                     }
                     else
                     {
-                        if(!self.loadSavedConfiguration() && (!config || !self.loadConfiguration(config)))
+                        if(!this.loadSavedConfiguration() && (!config || !this.loadConfiguration(config)))
                         {
-                            self.loadConfiguration(resources.themes.default);
-                            self.boxLayoutManager.enableLayoutEditing();
-                            $('.layoutEditButton').text("Save Layout"); //quick/cheap method for fixing the button label.. fix this when changing to the 'modes' model
+                            console.log('Notice: PortalApp (constructor): an error occured whilst loading the configuration, will now try to load the default configuration.');
+                            this.loadConfiguration(resources.defaults.config);
+                            this.setViewMode('edit');
                         }
                     }
                     postConfigLoad();
@@ -147,25 +120,11 @@ class Core {
         }
         else
         {
-            if((!config || !self.loadConfiguration(config)))
+            if((!config || !this.loadConfiguration(config)))
             {
                 console.log('Notice: PortalApp (constructor): an error occured whilst loading the configuration, will now try to load the default configuration.');
-                try
-                {
-                    self.loadConfiguration(resources.themes.default);
-                    self.boxLayoutManager.enableLayoutEditing();
-                    $('.layoutEditButton').text("Save Layout"); //quick/cheap method for fixing the button label.. fix this when changing to the 'modes' model
-                }
-                catch(e)
-                {
-                    console.log('IMPORTANT: Could not load the default configuration, please report this problem to the author');
-                    return;
-                }
-            }
-            else
-            {
-                self.boxLayoutManager.disableLayoutEditing();
-                $('.layoutEditButton').text("Edit Layout"); //quick/cheap method for fixing the button label.. fix this when changing to the 'modes' model
+                this.loadConfiguration(resources.defaults.config);
+                this.setViewMode('edit');
             }
             postConfigLoad();
         }
@@ -174,6 +133,10 @@ class Core {
     compileConfiguration()
     {
         var config = {};
+        config.settings =
+        {
+            viewMode: this.viewMode
+        };
         config.theme = this.theme.encode();
         config.layout = this.boxLayoutManager.encode();
         return config;
@@ -341,9 +304,11 @@ class Core {
         try
         {
             //set defaults where data is missing.
-            config.theme = (typeof config.theme !== 'undefined' ? config.theme : resources.themes.default);
-            config.theme.chatango.roomType = (typeof config.theme.chatango.roomType !== 'undefined' ? config.theme.chatango.roomType : resources.themes.default.chatango.roomType);
-            config.theme.chatango.styles = (typeof config.theme.chatango.styles !== 'undefined' ? config.theme.chatango.styles : resources.themes.default.chatango.styles);
+            config.settings = (typeof config.settings !== 'undefined' ? config.settings : resources.defaults.config.settings);
+            config.settings.viewMode = (typeof config.settings.viewMode !== 'undefined' ? config.settings.viewMode : resources.defaults.config.settings.viewMode);
+            config.theme = (typeof config.theme !== 'undefined' ? config.theme : resources.defaults.theme);
+            config.theme.chatango.roomType = (typeof config.theme.chatango.roomType !== 'undefined' ? config.theme.chatango.roomType : resources.defaults.theme.chatango.roomType);
+            config.theme.chatango.styles = (typeof config.theme.chatango.styles !== 'undefined' ? config.theme.chatango.styles : resources.defaults.theme.chatango.styles);
             this.loadTheme(config.theme);
             if(typeof config.layout !== 'undefined')
             {
@@ -354,8 +319,7 @@ class Core {
             {
                 this.boxLayoutManager.reloadContents();
             }
-            //disable layout editing so that deleteButton disableLocks start at 1.
-            this.boxLayoutManager.disableLayoutEditing();
+            this.setViewMode(config.settings.viewMode);
 
             return true;
         }
@@ -376,7 +340,7 @@ class Core {
     {
         //going to remove the theme/room type drop down in favour of settings; but I guess straight up disable it for now
         // this.roomTypeSelect.val(theme.roomType);
-        // if(theme.chatangoStyles == resources.themes.default)
+        // if(theme.chatangoStyles == resources.defaults.theme)
         // {
         //     this.colorSchemeSelect.val('light');
         // }
@@ -396,7 +360,54 @@ class Core {
         localStorage.removeItem('the_portal/configuration');
         this.boxLayoutManager.reset();
         this.DOMRoot.find('.layoutEditButton').text('Edit Layout');
-        this.loadConfiguration({theme: resources.themes.default});
+        this.loadConfiguration(resources.defaults.config);
+    }
+
+    setViewMode(targetMode)
+    {
+        switch(targetMode)
+        {
+            case this.viewMode: //do nothing if we're already in this mode.
+            break;
+            case 'edit':
+                switch(this.viewMode)
+                {
+                    case 'minimal':
+                        ChatBox.unlockAllContents();
+                    case 'standard':
+                        this.boxLayoutManager.enableLayoutEditing();
+                    break;
+                    default:
+                }
+            break;
+            case 'standard':
+                switch(this.viewMode)
+                {
+
+                    case 'minimal':
+                        ChatBox.unlockAllContents();
+                    break;
+                    case 'edit':
+                    default:
+                        this.boxLayoutManager.disableLayoutEditing();
+                }
+
+            break;
+            case 'minimal':
+                switch(this.viewMode)
+                {
+                    case 'edit':
+                        this.boxLayoutManager.disableLayoutEditing();
+                    case 'standard':
+                        ChatBox.lockAllContents();
+                    break;
+                    default:
+                        this.boxLayoutManager.disableLayoutEditing();
+                }
+            break;
+        }
+        this.viewMode = targetMode;
+        this.DOMRoot.attr('data-view-mode', targetMode);
     }
 }
 

@@ -55,3 +55,5 @@ import {publicPath} from '../../publicPath.js';
         document.title = "Portal: A Chatango Multi-Chat App";
     }
 )();
+
+window.PortalApp = module.exports;

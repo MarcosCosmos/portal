@@ -1,4 +1,5 @@
 $headerCollapsedHeight: 52px;
+$headerMinimalSize: 25px; //the size of the menu button when in minimal view
 @keyframes loader_spinner {
     0% {
         transform:rotateZ(0deg);
@@ -29,6 +30,10 @@ $headerCollapsedHeight: 52px;
     font-size: inherit;
     font-weight: inherit;
     fill:inherit;
+}
+
+.PortalApp button {
+    cursor: pointer;
 }
 
 .PortalApp a {
@@ -83,18 +88,20 @@ $headerCollapsedHeight: 52px;
         height: 60%;
     }
 }
+
 .PortalApp .header {
     width: 100%;
     position: absolute;
     z-index: 150;
     top: 0px;
-    left: 0px;
+    right: 0px;
     transition: max-height ease 0.25s;
     overflow-y: hidden;
     display: flex;
     justify-content: flex-start;
     flex-wrap: nowrap;
     align-items: flex-start;
+    max-width: calc(100%);
     max-height: calc(100%);
     padding:5px;
     box-sizing: border-box;
@@ -139,6 +146,9 @@ $headerCollapsedHeight: 52px;
     flex-direction: row;
     justify-content: space-between;
     flex: 1 1 auto;
+    opacity: 1;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
 }
 
 .PortalApp .header .headerNav, .PortalApp .header .controlsContainer, .PortalApp .header .pagesNav {
@@ -175,11 +185,49 @@ $headerCollapsedHeight: 52px;
         -webkit-transition: all 0.2s;
         transition: all 0.2s;
     }
+    position:relative;
+    z-index:10;
 }
 
 .PortalApp .header[data-locked-open=true] .menuButton::before {
     max-height: calc(100%);
 }
+
+.PortalApp[data-view-mode='minimal']
+{
+    .header {
+        max-width: calc(#{$headerMinimalSize});
+        max-height: calc(#{$headerMinimalSize});
+        padding: 5px;
+    }
+
+    .header .menuButton, .header .menuButton svg {
+       width: calc(#{$headerMinimalSize} - 10px);
+       height: calc(#{$headerMinimalSize} - 10px);
+    }
+
+    .header .menuButton svg {
+        vertical-align: top;
+    }
+
+    .header .menuButton
+    {
+        margin: 0;
+    }
+
+    .headerSubWrapper {
+        display: none;
+    }
+
+    .popupCover > div:not(.backgroundLayer), .BoxLayoutManager {
+        margin-top: 0px;
+    }
+
+    .groupIDInput {
+        font-size: 0.75em;
+    }
+}
+
 
 
 
@@ -225,7 +273,6 @@ $headerCollapsedHeight: 52px;
     opacity: 0.5;
 }
 .PortalApp .popupCover > div:not(.backgroundLayer) {
-    margin-top: 0%;
     display: flex;
     flex-direction: column;
     flex-wrap: no-wrap;
@@ -501,7 +548,7 @@ the min height of a chat + 1.2em which is the height of inputs + 2px in border +
     height: 1.2em !important;
     box-sizing: content-box;
 }
-.PortalApp .ChatBox .chatBoxControls > :not(:first-child):not(.disabledControl) {
+.PortalApp .ChatBox .chatBoxControls > :not(:first-child):not([disabled=true]):not([draggable=false]) {
     margin-left: 5px;
 }
 .PortalApp .ChatBox .chatBoxControls .groupIDInput {

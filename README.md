@@ -24,6 +24,12 @@ By pressing the "Clear Configuration" menu button, you can delete your saved lay
 Sometimes you may need to refresh the content-boxes, maybe there was a glitch, or, for example, busy chatango chatrooms left open all day may be occupying too much RAM.
 
 #Advanced Usage
+##Minimal view
+Minimal view attempts to minimise the amount of screen space occupied by the app controls etc, optimising the real estate for content.
+
+Minimal view can be entered by pressing the "Minimal View" menu button.
+
+To leave minimal view, simply press the menu button in top-right corner of the page.
 ##Sharing your configuration
 By hitting the Share menu button (it has a share icon), you can get a link that can be used to bookmark a layout and configuration, or send it to a friend.
 
@@ -38,12 +44,15 @@ These customised Chatango embed codes will also change the look of the whole Por
 ###Advanced Customisation
 The Import page also accepts JSON strings representing a configuration, in the same format as those supplied on the Share page.
 
+#Recent Change Log
+- Fixed the ch-loader
+- Implemented minimal view
+- Fixed minor CSS bugs
+
 #TODO
 - A more complete explanation of the configuration formats used/accepted by the app
-- Implement minimal view/use view modes instead of just going in and out of edit mode
 - Implement a GUI settings menu/popup
 - Introduce support for content other than Chatango rooms (e.g. Soundcloud, Twitch, general iframes)
-- Fix minor CSS bugs
 - Make it possible to temporarily bring individual content-boxes 'full-screen' (Tentative)
 - Expand the syntaxes available for input on the import page with something that might actually be viable to type from scratch. (Tentative)
 

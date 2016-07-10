@@ -17,3 +17,4 @@ module.exports = {
         );
     }
 };
+window.PortalApp = module.exports;

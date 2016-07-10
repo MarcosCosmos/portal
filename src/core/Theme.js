@@ -48,7 +48,7 @@ class Theme extends Encodable
 		);
 		this.chatango = {roomType: null, styles: null};
 		this.cssText = '';
-		this.applyEncoding(resources.themes.default);
+		this.applyEncoding(resources.defaults.theme);
 	}
 
 	updateCSSText(cssText)
@@ -128,7 +128,7 @@ class Theme extends Encodable
 		var result = chatangoStyles[Theme.optionNameMap[styleAlias]];
 		if(typeof result === 'undefined')
 		{
-			result = resources.themes.default.chatango.styles[Theme.optionNameMap[styleAlias]];
+			result = resources.defaults.theme.chatango.styles[Theme.optionNameMap[styleAlias]];
 		}
 		if(typeof result === 'undefined')
 		{

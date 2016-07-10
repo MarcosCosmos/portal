@@ -357,9 +357,7 @@ class ChatBox extends ChildBox
 	 */
 	lockContent()
 	{
-		var targetElms = this.addressForm.find(':input:not(.shadowgroupIDInput)').add(this.deleteButton);
-		Box.lockElms(targetElms);
-		targetElms.css('visibility', 'hidden');
+		Box.lockElms($([this.groupIDInput, this.groupIDSubmitButton]));
 	}
 
 	/**
@@ -367,9 +365,7 @@ class ChatBox extends ChildBox
 	 */
 	unlockContent()
 	{
-		var targetElms = this.addressForm.find(':input:not(.shadowgroupIDInput)').add(this.deleteButton);
-		Box.unlockElms(targetElms);
-		targetElms.css('visibility', 'initial');
+		Box.unlockElms($([this.groupIDInput, this.groupIDSubmitButton]));
 	}
 
 	lockLayout()
@@ -386,6 +382,22 @@ class ChatBox extends ChildBox
 		if(ChatBox._chats.length > 1)
 		{
 			this.dragElm.attr('draggable', true);
+		}
+	}
+
+	static lockAllContents()
+	{
+		for(var each of ChatBox._chats)
+		{
+			each.lockContent();
+		}
+	}
+
+	static unlockAllContents()
+	{
+		for(var each of ChatBox._chats)
+		{
+			each.unlockContent();
 		}
 	}
 }
