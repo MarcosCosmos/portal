@@ -98,7 +98,7 @@ module.exports = {
 			}
 		}
 	},
-	logo: require('html!../../resources/portal2.svg'),
+	logo: '[New Logo Soon]',
     loader: $(
         '<div>',
         {
