@@ -64,7 +64,6 @@ For advanced users, the popup that appears when you click the Share button will 
 ##Customisation
 By clicking the "Import/Customise" menu button, you can enter customised congfigurations.
 
-module.exports.resources.defaults.settings.fallbackContentType =
 For example, you can use Chatango's chatroom themeing system (e.g. http://quadgrouple.chatango.com/clonegroup) to customise the look of chatroom.
 
 These customised Chatango embed codes will also change the look of the whole Portal accordingly.
