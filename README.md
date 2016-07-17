@@ -95,6 +95,6 @@ The Generalisation and Regression-Sweep Update
 #Licensing Information (Credits)
 All content which is authored by Marcos Cousens-Schulz is &copy;Marcos Cousens-Schulz, 2015. This content is licensed under the Mozilla Public License 2.0, unless otherwise specified. This includes all HTML, CSS & JS code (unless otherwise specified).
 
-This app also contains some content which was originally authored by other individuals which has been included on either an identical or modified basis.
+This app may also contains some content which was originally authored by other individuals which has been included on either an identical or modified basis, and is licensed under the respective original license.
 
-With the exception of the icon from Portal 2 (the game), the icons used in this app were made by Freepik, and are licensed under CC BY 3.0.
+The icons used in this app were made by Freepik, and are licensed under  <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>.
