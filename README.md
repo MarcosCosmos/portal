@@ -28,24 +28,24 @@ Sometimes you may need to refresh the content-boxes, maybe there was a glitch, o
 An advanced feature of the portal, is that it supports multiple kinds of embed codes, etc (more to come).
 
 As a regular expression, the permitted grammar for inputting content addresses is:
-.(<content-type>:)?<sub-address>
+..(<content-type>:)?<sub-address>
 
 Where:
-.<content-type> is an optional specifier to override automatic detection and can be (at time writing) any of the following:
+..<content-type> is an optional specifier to override automatic detection and can be (at time writing) any of the following:
 
-.- iframe
-.- chatango-room
+..- iframe
+..- chatango-room
 
-.and <sub-address> is the actual content within the appropriate type.
+..and <sub-address> is the actual content within the appropriate type.
 
 In other words, the input format is an optional content-type from the list above, followed by the address of the content you want to embed.
 
-.e.g. "iframe:https://html.spec.whatwg.org/multipage/"
+..e.g. "iframe:https://html.spec.whatwg.org/multipage/"
 
 
 If the content-type is ommitted (or if the prefix isn't a recognised content-type) the system will attempt to heuristically guess the content-type.
 
-.in this way, addresses including protocols such as https:// will still be intuitively detected, and be forwarded onto the relevant manager unless said protocol is non-standard and clashes with recognised content-types (in which case an override can preserve the protocol)
+..in this way, addresses including protocols such as https:// will still be intuitively detected, and be forwarded onto the relevant manager unless said protocol is non-standard and clashes with recognised content-types (in which case an override can preserve the protocol)
 ##Minimal view
 Minimal view attempts to minimise the amount of screen space occupied by the app controls etc, optimising the real estate for content.
 
@@ -71,7 +71,8 @@ The Import page also accepts JSON strings representing a configuration, in the s
 ##4.2
 The Generalisation and Regression-Sweep Update
 - Laid the groundwork for supporting content other than Chatango rooms by creating more universal infrastructure/separating the code for chatango rooms from the core content-box infrastructure
-..- This also includes a new formula for inputting addresses, etc into content-box input feilds (still attempts to guess if no override is supplied). See [advanced content input instructions](#advanced-input) for more details
+
+-- This also includes a new formula for inputting addresses, etc into content-box input feilds (still attempts to guess if no override is supplied). See [advanced content input instructions](#advanced-input) for more details
 - Re-arrangement of the settings portion of the config, e.g. viewMode renamed to defaultViewMode, added a fallbackContentType for when heuristic resolution fails
 - Added an Iframe content manager, which the app now defaults to (the ch-loader still defaults to chatango-room)
 - Modified the way header content/pages are managed again. Additional coupling has been created, but it's neater
