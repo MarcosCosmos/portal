@@ -29,15 +29,15 @@ An advanced feature of the portal, is that it supports multiple kinds of embed c
 
 As a regular expression, the permitted grammar for inputting content addresses is:
 ```
-(*__<content-type>__:*)?__<sub-address>__
+(<content-type>:)?<sub-address>
 ```
 
 ###Where:
-__<content-type>__ is an optional specifier to override automatic detection and can be (at time writing) any of the following:
+\<content-type> is an optional specifier to override automatic detection and can be (at time writing) any of the following:
 - iframe
 - chatango-room
 
-and __<sub-address>__ is the actual content within the appropriate type.
+and \<sub-address> is the actual content within the appropriate type.
 
 In other words, the input format is an optional content-type from the list above, followed by the address of the content you want to embed. e.g.
 ```
