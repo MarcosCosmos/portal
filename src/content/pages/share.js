@@ -128,8 +128,11 @@ module.exports = {
 				this.shareType = 0;
 				this.idsAreReady = false;
 				this.config = appCore.compileConfiguration();
+				var themePlusSettingsObj = {};
+				Object.assign(themePlusSettingsObj, this.config);
+				delete themePlusSettingsObj.layout;
 				this.configText = JSON.stringify(this.config);
-				this.themeText = JSON.stringify(this.config.theme);
+				this.themeText = JSON.stringify(themePlusSettingsObj);
 				this.layoutText = JSON.stringify(this.config.layout);
 				this.themeID = null;
 				this.layoutID = null;

@@ -1,5 +1,5 @@
 import {Encodable} from '../../Encodable.js';
-import {ChatBox} from '../../../content/embedders/ChatBox.js';
+import {ContentBox} from './ContentBox.js';
 /**
  * Creates a button for adding boxes between other boxes (to it's parent)
  */
@@ -73,7 +73,7 @@ class AddBoxButton
 
 	onClick()
 	{
-		this.attachToParent(new ChatBox());
+		this.attachToParent(new ContentBox());
 	}
 
 	onDrop(event)

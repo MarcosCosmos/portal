@@ -1,10 +1,7 @@
-var info = {};
-info.version = '4.1-Beta';
-info.author = 'Cosmo (chatango account name)';
-info.title = 'The Portal';
-info.flavorText = 'A Chatango multi-chat app (Now Minimalist!)';
-
 module.exports =
 {
-	info
+	version: '4.2-Alpha',
+	author: 'Cosmo (chatango account name)',
+	title: 'The Portal',
+	flavorText: 'A tiling web-content manager (Very sick, sorry! This\'ll have to do for now :s)'
 };

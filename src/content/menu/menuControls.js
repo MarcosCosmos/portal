@@ -1,4 +1,5 @@
 import {Popup} from '../../core/layout/popup/Popup.js';
+import {CallbackSystem} from '../../core/CallbackSystem.js';
 
 //I'm unsure about the quality of this 'de-coupled' design. The main idea is that it would be possible to extend it without neccessarily modifying this file I guess?
 //might merge it back into Core, but with a neater syntax
@@ -26,7 +27,7 @@ let controlGenerators =
 	},
 
 	/*layoutEditButton*/ (appCore) => {
-		return $(
+		var editButton = $(
 			'<button>',
 			{
 				type: 'button',
@@ -41,15 +42,28 @@ let controlGenerators =
 				{
 					appCore.setViewMode('standard');
 					appCore.saveConfiguration();
-					$(this).text('Edit Layout');
+					updateEditButtonText();
 				}
 				else
 				{
 					appCore.setViewMode('edit');
-					$(this).text('Save Layout');
+					updateEditButtonText();
 				}
 			}
 		);
+
+		function updateEditButtonText()
+		{
+			switch (appCore.viewMode) {
+				case 'edit':
+					editButton.text('Save Layout');
+					break;
+				default:
+					editButton.text('Edit Layout');
+			}
+		}
+		CallbackSystem.set('viewModeUpdated', updateEditButtonText);
+		return editButton;
 	},
 
 	/*minimalViewButton*/ (appCore) => {
@@ -87,8 +101,7 @@ let controlGenerators =
 				resetPrompt.close = function()
 				{
 					resetPrompt.DOMRoot.detach();
-
-					appCore.types.Popup.removeOpenPopup(resetPrompt);
+					Popup.removeOpenPopup(resetPrompt);
 					promptOpen = false;
 				}
 				resetPrompt.setContent(
@@ -104,12 +117,11 @@ let controlGenerators =
 								type: 'button',
 								text: 'Confirm'
 							}
-						).one('click',
+						).on('click',
 							function()
 							{
 								appCore.clearConfiguration();
 								resetPrompt.close();
-								CallbackSystem.trigger('configUpdated');
 							}
 						),
 						$('<button>',
@@ -118,7 +130,7 @@ let controlGenerators =
 								type: 'button',
 								text: 'Cancel'
 							}
-						).one('click',
+						).on('click',
 							function()
 							{
 								resetPrompt.close();

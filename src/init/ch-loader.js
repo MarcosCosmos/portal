@@ -44,7 +44,10 @@ import {publicPath} from '../../publicPath.js';
                 require.ensure(['../core/typeList.js'],
                     function(require)
                     {
+                        module.exports.info = require('../core/info.js');
+                        module.exports.resources = require('../core/resources.js');
                         module.exports.types = require('../core/typeList.js');
+                        module.exports.resources.defaults.config.settings.fallbackContentType = module.exports.types.ChatangoRoomManager.contentType; //override since the other loader/version for the github.io page /will/ default to iframe
                         module.exports.coreInstance = new module.exports.types.Core(config, prioritiseUserConfig, appWrapper, function(){appWrapper.removeChild(loader)});
                     },
                     'core'

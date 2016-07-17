@@ -1,6 +1,7 @@
 //not a type onto itself, it would be a bit of a singleton if it could be instantiated or was properly global, though more of a namespace amongst this scope. That said, it does kind of make the app itself a singleton, unless it starts to support multiple callbacks for one trigger?
 //actually even this, unless the CallbackSystem is added to the prototype of MultiChatApp such that it's triggers are seperated (with the exception of possibly the resources loaded etc ones, which arec what it was originally for).
 //that said though, I can't see justification for needing multiple apps, and if so, shoving them into iframes should suffice more or less?
+//also not yet, and likely won't be supporting multiple callbacks under the same key, although it could be done with subkeys determined and returned by the callback system
 var CallbackSystem = {callbacks:{}};
 
 CallbackSystem.get = function(key)

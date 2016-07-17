@@ -22,7 +22,7 @@ class BoxLayoutManager extends Encodable
 
 	reset()
 	{
-		this.ContainerBox.destroy();
+		this.containerBox.destroy();
 		this._defaultInitialize();
 	}
 
@@ -65,37 +65,37 @@ class BoxLayoutManager extends Encodable
 	 */
 	_defaultInitialize()
 	{
-		this.ContainerBox = new ContainerBox('row');
+		this.containerBox = new ContainerBox('row');
 		var target = new ContainerBox('column');
-		this.DOMRoot.append(this.ContainerBox.DOMRoot);
-		this.startMonitoringAddFor(this.ContainerBox); //it's important to monitor before the initial add is performed.
-		this.ContainerBox.add(target);
+		this.DOMRoot.append(this.containerBox.DOMRoot);
+		this.startMonitoringAddFor(this.containerBox); //it's important to monitor before the initial add is performed.
+		this.containerBox.add(target);
 		target.initialAddButton.onClick();
 	}
 
 	enableLayoutEditing()
 	{
-		this.ContainerBox.unlockLayout();
+		this.containerBox.unlockLayout();
 		this.DOMRoot.attr('data-editing-enabled', true);
 		this.editingEnabled = true;
 	}
 
 	disableLayoutEditing()
 	{
-		this.ContainerBox.lockLayout();
+		this.containerBox.lockLayout();
 		this.DOMRoot.attr('data-editing-enabled', false);
 		this.editingEnabled = false;
 	}
 
 	reloadContents()
 	{
-		this.ContainerBox.reloadContents();
+		this.containerBox.reloadContents();
 	}
 
 	//this differs from adding directly to a box container when we add the second box to the current container, wrap it in an alt container so we still have appropriate 'outer' buttons.
 	onAdd(eventSource, box, index)
 	{
-		if(eventSource == this.ContainerBox && this.ContainerBox.boxes.length == 1)
+		if(eventSource == this.containerBox && this.containerBox.boxes.length == 1)
 		{
 			if(!(eventSource.boxes[0].box instanceof ContainerBox))
 			{
@@ -113,17 +113,17 @@ class BoxLayoutManager extends Encodable
 			this.stopMonitoringAddFor(eventSource);
 			this.startMonitoringCollapseIfAppropriateFor(eventSource);
 			var nextBoxType = eventSource.boxType == 'row' ? 'column' : 'row';
-			this.ContainerBox = new ContainerBox(nextBoxType);
-			this.DOMRoot.append(this.ContainerBox.DOMRoot);
-			this.startMonitoringAddFor(this.ContainerBox); //it's important to monitor before the initial add is performed.
-			this.ContainerBox.add(eventSource);
+			this.containerBox = new ContainerBox(nextBoxType);
+			this.DOMRoot.append(this.containerBox.DOMRoot);
+			this.startMonitoringAddFor(this.containerBox); //it's important to monitor before the initial add is performed.
+			this.containerBox.add(eventSource);
 		}
 		ContainerBox.prototype.add.call(eventSource, box, index);
 	}
 
 	onCollapseIfAppropriate(eventSource)
 	{
-		if((!ContainerBox.prototype.collapseIfAppropriate.call(eventSource)) && (eventSource.parent == this.ContainerBox && this.ContainerBox.boxes.length == 1 && eventSource.boxes.length == 1 && (eventSource.boxes[0].box instanceof ContainerBox) && eventSource.boxes[0].box.boxType == this.ContainerBox.boxType && eventSource.boxes[0].box.boxes.length > 1))
+		if((!ContainerBox.prototype.collapseIfAppropriate.call(eventSource)) && (eventSource.parent == this.containerBox && this.containerBox.boxes.length == 1 && eventSource.boxes.length == 1 && (eventSource.boxes[0].box instanceof ContainerBox) && eventSource.boxes[0].box.boxType == this.containerBox.boxType && eventSource.boxes[0].box.boxes.length > 1))
 		{
 			eventSource.collapse();
 		}
@@ -132,28 +132,28 @@ class BoxLayoutManager extends Encodable
 	encode()
 	{
 		var result = super.encode();
-		result.ContainerBox = this.ContainerBox.encode();
+		result.containerBox = this.containerBox.encode();
 		result.constructorName = 'BoxLayoutManager';
 		return result;
 	}
 
 	applyEncoding(encoding)
 	{
-		if(typeof encoding.ContainerBox !== 'undefined')
+		if(typeof encoding.containerBox !== 'undefined')
 		{
-			this.ContainerBox.destroy();
-			this.ContainerBox = Encodable.constructFromEncoding(encoding.ContainerBox);
-			this.startMonitoringAddFor(this.ContainerBox);
-			for(var i = 0; i < this.ContainerBox.boxes.length; i++)
+			this.containerBox.destroy();
+			this.containerBox = Encodable.constructFromEncoding(encoding.containerBox);
+			this.startMonitoringAddFor(this.containerBox);
+			for(var i = 0; i < this.containerBox.boxes.length; i++)
 			{
-				let eachBox = this.ContainerBox.boxes[i].box;
+				let eachBox = this.containerBox.boxes[i].box;
 				if(eachBox instanceof ContainerBox)
 				{
 					this.startMonitoringCollapseIfAppropriateFor(eachBox);
 				}
 			}
-			this.DOMRoot.append(this.ContainerBox.DOMRoot);
-			if(this.ContainerBox.boxes.length == 0)
+			this.DOMRoot.append(this.containerBox.DOMRoot);
+			if(this.containerBox.boxes.length == 0)
 			{
 				this.reset();
 			}

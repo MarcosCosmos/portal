@@ -1,10 +1,12 @@
-import {info} from '../info.js';
+import info from '../info.js';
 import {controlGenerators as menuControlGenerators} from '../../content/menu/menuControls.js';
 import {pageGenerator as creditsPageGenerator} from '../../content/pages/credits.js';
 import {pageGenerator as importPageGenerator} from '../../content/pages/import.js';
 import {pageGenerator as sharePageGenerator} from '../../content/pages/share.js';
 import {pageGenerator as infoPageGenerator} from '../../content/pages/info.js';
 import resources from '../resources.js';
+
+//I've ended up re-coupling header and the Core a little, which sort of makes sense, since header contains a lot of things that need to interact with other parts of the app.
 
 /**
  * Controller class for the header bar. Manages the list of menu items, the changes that occur in the header when layout-locking or going into minimal view
@@ -14,6 +16,7 @@ class Header
 {
 	constructor(appCore)
 	{
+		this.appCore = appCore;
 		this.controls = [];
 		this.pages = [];
 		var versionComponents = info.version.split('-');
@@ -132,25 +135,11 @@ class Header
 		headerSubWrapper.append(this.pagesNav);
 
 		//generate controls
-		for(let i = 0; i < menuControlGenerators.length; ++i)
-		{
-			this.addControls(menuControlGenerators[i](appCore));
-		}
+		this.addControls(menuControlGenerators);
 
 
 		//generate the pages
-		let eachPage = creditsPageGenerator(appCore);
-		this.DOMRoot.append(eachPage.DOMRoot);
-		this.addPages(eachPage);
-		eachPage = infoPageGenerator(appCore);
-		this.DOMRoot.append(eachPage.DOMRoot);
-		this.addPages(eachPage);
-		eachPage = importPageGenerator(appCore);
-		this.DOMRoot.append(eachPage.DOMRoot);
-		this.addPages(eachPage);
-		eachPage = sharePageGenerator(appCore);
-		this.DOMRoot.append(eachPage.DOMRoot);
-		this.addPages(eachPage);
+		this.addPages([creditsPageGenerator, importPageGenerator, sharePageGenerator, infoPageGenerator]);
 
 	}
 
@@ -158,27 +147,36 @@ class Header
 	 * Use this method to add one or control items/buttons to the header. the parameter can be a list or a single item.
 	 * The controls should be already-created json dom objects, since this header doesn't have any access to the core instance
 	 */
-	addControls(JSDOMObjs)
+	addControls(controlGenerators)
 	{
-		$(this.controls).add(JSDOMObjs);
-		this.controlsContainer.append(JSDOMObjs);
-	}
-
-	/**
-	 * Use this method to add one or control items/buttons to the header. the parameter can be a list or a single item.
-	 * The controls should be already-created json dom objects, since this header doesn't have any access to the core instance
-	 */
-	addPages(pages)
-	{
-		if(typeof pages.length === 'undefined')
+		if(typeof controlGenerators.length === 'undefined')
 		{
-			pages = [pages];
+			controlGenerators = [controlGenerators];
 		}
-
-		$(this.pages).add(pages);
-		for(let i = 0; i < pages.length; ++i)
+		for(let eachGen of controlGenerators)
 		{
-			this.pagesNav.append(pages[i].navItem);
+			let eachResult = eachGen(this.appCore);
+			$(this.controls).add(eachResult);
+			this.controlsContainer.append(eachResult);
+		}
+	}
+
+	/**
+	 * Use this method to add one or control items/buttons to the header. the parameter can be a list or a single item.
+	 * The controls should be already-created json dom objects, since this header doesn't have any access to the core instance
+	 */
+	addPages(pageGenerators)
+	{
+		if(typeof pageGenerators.length === 'undefined')
+		{
+			pageGenerators = [pageGenerators];
+		}
+		for(let eachGen of pageGenerators)
+		{
+			let eachResult = eachGen(this.appCore);
+			this.pages.push(eachResult);
+			this.appCore.DOMRoot.append(eachResult.DOMRoot);
+			this.pagesNav.append(eachResult.navItem);
 		}
 	}
 

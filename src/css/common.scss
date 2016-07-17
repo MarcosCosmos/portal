@@ -223,7 +223,7 @@ $headerMinimalSize: 25px; //the size of the menu button when in minimal view
         margin-top: 0px;
     }
 
-    .groupIDInput {
+    .contentInput {
         font-size: 0.75em;
     }
 }
@@ -448,12 +448,12 @@ $headerMinimalSize: 25px; //the size of the menu button when in minimal view
 }
 .PortalApp .BoxLayoutManager[data-editing-enabled=false]
 {
-    .dragChatElm, .AddBoxButton, .boxResizeElm
+    .dragContentElm, .AddBoxButton, .boxResizeElm
     {
         @extend .disabledControl;
     }
 }
-.PortalApp .BoxLayoutManager .dragChatElm[draggable=false]
+.PortalApp .BoxLayoutManager .dragContentElm[draggable=false]
 {
     @extend .disabledControl;
 }
@@ -519,7 +519,7 @@ $headerMinimalSize: 25px; //the size of the menu button when in minimal view
 }
 
 
-.PortalApp .ChatBox {
+.PortalApp .ContentBox {
     min-width: 120px;
 /*
 the min height of a chat + 1.2em which is the height of inputs + 2px in border + 2x2px in padding? NOTE: THIS MUST BE KEPT ACCURATE.
@@ -531,10 +531,10 @@ the min height of a chat + 1.2em which is the height of inputs + 2px in border +
     justify-content: stretch;
     align-items: stretch;
 }
-.PortalApp .ChatBox[data-is-active-drag-object=true] {
+.PortalApp .ContentBox[data-is-active-drag-object=true] {
     opacity: 0;
 }
-.PortalApp .ChatBox .chatBoxControls {
+.PortalApp .ContentBox .ContentBoxControls {
     margin-left: 5px;
     margin-right: 5px;
     display: flex;
@@ -542,44 +542,45 @@ the min height of a chat + 1.2em which is the height of inputs + 2px in border +
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    overflow-x: hidden;
 }
-.PortalApp .ChatBox .chatBoxControls .buttonRule, .PortalApp .ChatBox .chatBoxControls .fieldRule {
+.PortalApp .ContentBox .ContentBoxControls .buttonRule, .PortalApp .ContentBox .ContentBoxControls .fieldRule {
     height: 1.2em !important;
     box-sizing: content-box;
 }
-.PortalApp .ChatBox .chatBoxControls > :not(:first-child):not([disabled=true]):not([draggable=false]) {
+.PortalApp .ContentBox .ContentBoxControls > :not(:first-child):not([disabled=true]):not([draggable=false]) {
     margin-left: 5px;
 }
-.PortalApp .ChatBox .chatBoxControls .groupIDInput {
+.PortalApp .ContentBox .ContentBoxControls .contentInput {
     flex: 1 1 auto;
     width: 3em;
 }
-.PortalApp .ChatBox .chatBoxControls .dragChatElm, .PortalApp .ChatBox .chatBoxControls button {
+.PortalApp .ContentBox .ContentBoxControls .dragContentElm, .PortalApp .ContentBox .ContentBoxControls button {
     flex: 0 0 auto;
 }
-.PortalApp .ChatBox .chatBoxControls .dragChatElm {
+.PortalApp .ContentBox .ContentBoxControls .dragContentElm {
     position: relative;
     .antiSelectionCover {
         @extend .absoluteLayer;
         z-index: 1;
     }
 }
-.PortalApp .ChatBox .chatBoxControls .deleteButton {
+.PortalApp .ContentBox .ContentBoxControls .deleteButton {
     -webkit-transition: all 0.2s;
     transition: all 0.2s;
 }
-.PortalApp .ChatBox .chatBoxControls .disabledControl
+.PortalApp .ContentBox .ContentBoxControls .disabledControl
 {
     max-width: calc(0px);
 }
-.PortalApp .ChatBox .chatBoxControls > .button {
+.PortalApp .ContentBox .ContentBoxControls > .button {
     line-height: 1em;
 }
-.PortalApp .ChatBox .chatBoxControls > :not(.button) {
+.PortalApp .ContentBox .ContentBoxControls > :not(.button) {
     line-height: 1em;
 }
-.PortalApp .ChatBox .chatEmbed {
+.PortalApp .ContentBox .contentEmbed, .PortalApp .ContentManager {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     flex: 1 0 auto;

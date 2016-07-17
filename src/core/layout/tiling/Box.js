@@ -16,7 +16,6 @@ class Box extends Encodable
 
     static lockElms(targetElms)
     {
-        console.log(targetElms);
         targetElms.each(
             function()
             {

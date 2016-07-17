@@ -1,3 +1,5 @@
+import {IframeManager} from '../content/managers/IframeManager.js';
+
 //TODO: might remove the logo and spinner and move them into html src through webpack? - if it can be used that way it would be much cleaner
 module.exports = {
 	themes:
@@ -112,8 +114,13 @@ module.exports = {
 	],
 	defaults:
 	{
-		viewMode: 'standard',
-		config: {settings: {}}
+		config:
+		{
+			settings: {
+				defaultViewMode: 'standard',
+				fallbackContentType: IframeManager.contentType
+			}
+		} //select a content/manager type to fall back to when one can't be otherwise detected
 	}
 };
 module.exports.loader.append(module.exports.logo);

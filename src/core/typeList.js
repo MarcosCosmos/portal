@@ -12,12 +12,14 @@ import {Header} from './layout/Header.js';
 import {Box} from './layout/tiling/Box.js';
 import {ChildBox} from './layout/tiling/ChildBox.js';
 import {ContainerBox} from './layout/tiling/ContainerBox.js';
+import {ContentBox} from './layout/tiling/ContentBox.js';
 import {BoxLayoutManager} from './layout/tiling/BoxLayoutManager.js';
 import {AddBoxButton} from './layout/tiling/AddBoxButton.js';
 import {Popup} from './layout/popup/Popup.js';
 import {Page} from './layout/popup/Page.js';
-import {ChatBox} from '../content/embedders/ChatBox.js';
-import {Encodable, setTypes} from './Encodable.js';
+import {ContentManager} from './ContentManager.js';
+import {ChatangoRoomManager} from '../content/managers/ChatangoRoomManager.js';
+import {Encodable, setTypes as encSetTypes} from './Encodable.js';
 import {Core} from './Core.js';
 
 module.exports =
@@ -27,8 +29,9 @@ module.exports =
 	Box: Box,
 	ChildBox: ChildBox,
 	ContainerBox: ContainerBox,
+	ContentBox: ContentBox,
 	BoxLayoutManager: BoxLayoutManager,
-	ChatBox: ChatBox,
+	ChatangoRoomManager: ChatangoRoomManager,
 	AddBoxButton: AddBoxButton,
 	Theme: Theme,
 	Popup: Popup,
@@ -37,4 +40,5 @@ module.exports =
 	Core: Core
 }
 
-setTypes(module.exports);
+encSetTypes(module.exports);
+// conSetTypes(module.exports);
