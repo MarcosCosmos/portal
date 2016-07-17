@@ -93,7 +93,7 @@ The Generalisation and Regression-Sweep Update
 - Expand the syntaxes available for input on the import page with something that might actually be viable to type from scratch. (Tentative)
 
 #Licensing Information (Credits)
-All content which is authored by Marcos Cousens-Schulz is \@Marcos Cousens-Schulz, 2015. This content is licensed under the Mozilla Public License 2.0, unless otherwise specified. This includes all HTML, CSS & JS code (unless otherwise specified).
+All content which is authored by Marcos Cousens-Schulz is &copy;Marcos Cousens-Schulz, 2015. This content is licensed under the Mozilla Public License 2.0, unless otherwise specified. This includes all HTML, CSS & JS code (unless otherwise specified).
 
 This app also contains some content which was originally authored by other individuals which has been included on either an identical or modified basis.
 
