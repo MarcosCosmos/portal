@@ -88,6 +88,7 @@ The Generalisation and Regression-Sweep Update
 #TODO
 - A more complete explanation of the configuration formats used/accepted by the app
 - Implement a GUI settings menu/popup
+
 ~~- Introduce support for content other than Chatango rooms (e.g. Soundcloud, Twitch, general iframes)~~
 - Make it possible to temporarily bring individual content-boxes 'full-screen' (Tentative)
 - Expand the syntaxes available for input on the import page with something that might actually be viable to type from scratch. (Tentative)
