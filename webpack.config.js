@@ -12,7 +12,7 @@ module.exports =
 		loader: './src/init/loader.js',
 		'ch-loader': './src/init/ch-loader.js',
 		framedPage: './src/core/layout/popup/framedPage.js',
-		jquery: ['jquery', 'jquery-ui/core.js', 'jquery-ui/draggable.js', 'jquery-ui/droppable.js', 'jquery-ui/resizable.js', 'style!css!modules/jquery-ui/themes/base/jquery.ui.core.css', 'style!css!modules/jquery-ui/themes/base/jquery.ui.theme.css','style!css!modules/jquery-ui/themes/base/jquery.ui.resizable.css'],
+		jquery: ['jquery', 'jquery-ui/ui/core.js', 'jquery-ui/ui/widgets/draggable.js', 'jquery-ui/ui/widgets/droppable.js', 'jquery-ui/ui/widgets/resizable.js', 'style!css!modules/jquery-ui/themes/base/core.css', 'style!css!modules/jquery-ui/themes/base/theme.css','style!css!modules/jquery-ui/themes/base/resizable.css'],
 	},
 	output:
 	{

@@ -36,7 +36,7 @@
     "style-loader": "^0.13.1",
     "svg-inline-loader": "^0.6.0",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.3"
   },
   "dependencies": {
     "babel-polyfill": "^6.9.1",

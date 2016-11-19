@@ -3,13 +3,13 @@ import {AddBoxButton} from './AddBoxButton.js';
 import {ChildBox} from './ChildBox.js';
 import {Box} from './Box.js';
 
-require('jquery-ui/core.js');
-require('jquery-ui/draggable.js');
-require('jquery-ui/droppable.js');
-require('jquery-ui/resizable.js');
-require('style!css!modules/jquery-ui/themes/base/jquery.ui.core.css');
-require('style!css!modules/jquery-ui/themes/base/jquery.ui.theme.css');
-require('style!css!modules/jquery-ui/themes/base/jquery.ui.resizable.css');
+require('jquery-ui/ui/core.js');
+require('jquery-ui/ui/widgets/draggable.js');
+require('jquery-ui/ui/widgets/droppable.js');
+require('jquery-ui/ui/widgets/resizable.js');
+require('style!css!modules/jquery-ui/themes/base/core.css');
+require('style!css!modules/jquery-ui/themes/base/theme.css');
+require('style!css!modules/jquery-ui/themes/base/resizable.css');
 
 /**
  * This is abstract & does not have it's own DOMRoot, intended to be suitable as an aspect/mixin.
