@@ -1,204 +1,118 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <title>Portal by MarcosCosmos</title>
-  </head>
-
-  <body>
-    <header>
-      <div class="inner">
-        <h1>Portal</h1>
-        <h2>Demo Coming Soon</h2>
-        <a href="https://github.com/MarcosCosmos/Portal" class="button"><small>View project on</small> GitHub</a>
-      </div>
-    </header>
-
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h1>
-<a id="what-is-this" class="anchor" href="#what-is-this" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What is This?</h1>
-
-<p>Portal is kind of like a tiling window manager for a web browser. It provides an interface for splitting up the page into multiple content-boxes, each containing something (e.g. an iframe), and rearranging those boxes.</p>
-
-<p>Originally, and perhaps primarily, it was created to conveniently display multiple Chatango chatrooms within the one browser window.</p>
-
-<h1>
-<a id="basic-usage" class="anchor" href="#basic-usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Basic Usage</h1>
-
-<h2>
-<a id="layout-editing" class="anchor" href="#layout-editing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Layout Editing</h2>
-
-<p>Basic usage is fairly simple. First of all, to enter or leave layout editing mode, press the "Edit Layout"/"Save Layout" menu button.</p>
-
-<p>When in editing mode, each content-box will be surrounded by box-add-buttons (labelled with a "+"). Pressing one of these buttons will spawn a new content box where the button was.</p>
-
-<h2>
-<a id="the-contents-of-content-boxes" class="anchor" href="#the-contents-of-content-boxes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The Contents of Content-Boxes</h2>
-
-<p>In edit-mode, each content-box has 4 control items at the top:</p>
-
-<ul>
-<li>A text field, for specifying the address of the content to load (currently only supports Chatango chatrooms or regular site addresses)</li>
-<li>A "Go" button, which loads the address specified in the aforementioned text field</li>
-<li>A "Drag" button, which can be used to pick up and re-arrange the content box. Once picked up, simple drop the box over any of the add-box-buttons on the page (which will now show will dashed outlines)</li>
-<li>An "x" button, which deletes the content box.</li>
-</ul>
-
-<h2>
-<a id="saving-your-layout" class="anchor" href="#saving-your-layout" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Saving your layout</h2>
-
-<p>To save your layout, and any other configurations, press the "Save Configurations" menu button.</p>
-
-<h2>
-<a id="resetting" class="anchor" href="#resetting" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Resetting</h2>
-
-<p>By pressing the "Clear Configuration" menu button, you can delete your saved layout and configurations, returning to the default state of just one, empty content box</p>
-
-<h2>
-<a id="refresh" class="anchor" href="#refresh" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Refresh</h2>
-
-<p>Sometimes you may need to refresh the content-boxes, maybe there was a glitch, or, for example, busy chatango chatrooms left open all day may be occupying too much RAM.</p>
-
-<h1>
-<a id="advanced-usage" class="anchor" href="#advanced-usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Advanced Usage</h1>
-
-<h2>
-<a id="advanced-input" class="anchor" href="#advanced-input" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Advanced input</h2>
-
-<p>An advanced feature of the portal, is that it supports multiple kinds of embed codes, etc (more to come).</p>
-
-<p>As a regular expression, the permitted grammar for inputting content addresses is:</p>
-
-<pre><code>(&lt;content-type&gt;:)?&lt;sub-address&gt;
-</code></pre>
-
-<h3>
-<a id="where" class="anchor" href="#where" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Where:</h3>
-
-<p>&lt;content-type&gt; is an optional specifier to override automatic detection and can be (at time writing) any of the following:</p>
-
-<ul>
-<li>iframe</li>
-<li>chatango-room</li>
-</ul>
-
-<p>and &lt;sub-address&gt; is the actual content within the appropriate type.</p>
-
-<p>In other words, the input format is an optional content-type from the list above, followed by the address of the content you want to embed. e.g.</p>
-
-<pre><code>iframe:https://html.spec.whatwg.org/multipage/
-</code></pre>
-
-<p>If the content-type is ommitted (or if the prefix isn't a recognised content-type) the system will attempt to heuristically guess the content-type.</p>
-
-<p>in this way, addresses including protocols such as https:// will still be intuitively detected, and be forwarded onto the relevant manager unless said protocol is non-standard and clashes with recognised content-types (in which case an override can preserve the protocol)</p>
-
-<h2>
-<a id="minimal-view" class="anchor" href="#minimal-view" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Minimal view</h2>
-
-<p>Minimal view attempts to minimise the amount of screen space occupied by the app controls etc, optimising the real estate for content.</p>
-
-<p>Minimal view can be entered by pressing the "Minimal View" menu button.</p>
-
-<p>To leave minimal view, simply press the menu button in top-right corner of the page.</p>
-
-<h2>
-<a id="sharing-your-configuration" class="anchor" href="#sharing-your-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Sharing your configuration</h2>
-
-<p>By hitting the Share menu button (it has a share icon), you can get a link that can be used to bookmark a layout and configuration, or send it to a friend.</p>
-
-<p>For advanced users, the popup that appears when you click the Share button will also provide a JSON string which contains all the settings in the current configuration, and the current layout.</p>
-
-<h2>
-<a id="customisation" class="anchor" href="#customisation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Customisation</h2>
-
-<p>By clicking the "Import/Customise" menu button, you can enter customised congfigurations.</p>
-
-<p>For example, you can use Chatango's chatroom themeing system (e.g. <a href="http://quadgrouple.chatango.com/clonegroup">http://quadgrouple.chatango.com/clonegroup</a>) to customise the look of chatroom.</p>
-
-<p>These customised Chatango embed codes will also change the look of the whole Portal accordingly.</p>
-
-<h3>
-<a id="advanced-customisation" class="anchor" href="#advanced-customisation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Advanced Customisation</h3>
-
-<p>The Import page also accepts JSON strings representing a configuration, in the same format as those supplied on the Share page.</p>
-
-<h1>
-<a id="recent-change-log" class="anchor" href="#recent-change-log" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Recent Change Log</h1>
-
-<h2>
-<a id="42" class="anchor" href="#42" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.2</h2>
-
-<p>The Generalisation and Regression-Sweep Update</p>
-
-<ul>
-<li>Laid the groundwork for supporting content other than Chatango rooms by creating more universal infrastructure/separating the code for chatango rooms from the core content-box infrastructure
-
-<ul>
-<li>This also includes a new formula for inputting addresses, etc into content-box input feilds (still attempts to guess if no override is supplied). See <a href="#advanced-input">advanced content input instructions</a> for more details</li>
-</ul>
-</li>
-<li>Re-arrangement of the settings portion of the config, e.g. viewMode renamed to defaultViewMode, added a fallbackContentType for when heuristic resolution fails</li>
-<li>Added an Iframe content manager, which the app now defaults to (the ch-loader still defaults to chatango-room)</li>
-<li>Modified the way header content/pages are managed again. Additional coupling has been created, but it's neater</li>
-<li>Fixed <em>a lot</em> of regressions, etc
-##4.1</li>
-<li>Fixed the ch-loader</li>
-<li>Implemented minimal view</li>
-<li>Fixed minor CSS bugs</li>
-</ul>
-
-<h1>
-<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>TODO</h1>
-
-<ul>
-<li>A more complete explanation of the configuration formats used/accepted by the app</li>
-<li>Implement a GUI settings menu/popup</li>
-<li><del>Introduce support for content other than Chatango rooms (e.g. Soundcloud, Twitch, general iframes)</del></li>
-<li>Make it possible to temporarily bring individual content-boxes 'full-screen' (Tentative)</li>
-<li>Expand the syntaxes available for input on the import page with something that might actually be viable to type from scratch. (Tentative)</li>
-</ul>
-
-<h1>
-<a id="licensing-information-credits" class="anchor" href="#licensing-information-credits" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Licensing Information (Credits)</h1>
-
-<p>All content which is authored by Marcos Cousens-Schulz is ©Marcos Cousens-Schulz, 2015. This content is licensed under the Mozilla Public License 2.0, unless otherwise specified. This includes all HTML, CSS &amp; JS code (unless otherwise specified).</p>
-
-<p>This app also contains some content which was originally authored by other individuals which has been included on either an identical or modified basis.</p>
-
-<p>With the exception of the icon from Portal 2 (the game), the icons used in this app were made by Freepik, and are licensed under CC BY 3.0.</p>
-        </section>
-
-        <aside id="sidebar">
-          <a href="https://github.com/MarcosCosmos/Portal/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/MarcosCosmos/Portal/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/MarcosCosmos/Portal"></a> is maintained by <a href="https://github.com/MarcosCosmos">MarcosCosmos</a>.</p>
-
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
-
-  
-  </body>
+<html><head><link href="./common.css" rel="stylesheet"></head>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0">
+ 	<meta charset="UTF-8">
+	<style type="text/css">
+		body
+		{
+			margin: 0px;
+			padding:0px;
+		}
+	</style>
+	<style id="PortalAppInitialCCS" type="text/css">
+		@-webkit-keyframes loader_spinner {
+			from {
+				-webkit-transform: rotateZ(0deg);
+			}
+			to {
+				-webkit-transform: rotateZ(360deg);
+			}
+		}
+		@-moz-keyframes loader_spinner {
+			from {
+				transform: rotateZ(0deg);
+			}
+			to {
+				transform: rotateZ(360deg);
+			}
+		}
+		@-o-keyframes loader_spinner {
+			from {
+				-o-transform: rotateZ(0deg);
+			}
+			to {
+				-o-transform: rotateZ(360deg);
+			}
+		}
+		@-ms-keyframes loader_spinner {
+			from {
+				-ms-transform: rotateZ(0deg);
+			}
+			to {
+				-ms-transform: rotateZ(360deg);
+			}
+		}
+		@keyframes loader_spinner {
+			from {
+				transform: rotateZ(0deg);
+			}
+			to {
+				transform: rotateZ(360deg);
+			}
+		}
+		.PortalApp {
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			top: 0px;
+			left: 0px;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+		.PortalApp:not([data-loaded=true]) {
+			overflow: hidden;
+		}
+		.PortalApp .loaderSpinner {
+			display: inline-flex;
+			-webkit-flex-direction: column;
+			flex-direction: column;
+			-webkit-justify-content: center;
+			justify-content: center;
+			-webkit-align-items: center;
+			align-items: center;
+		}
+		.PortalApp .loaderSpinner > svg {
+			-webkit-flex-shrink: 1;
+			flex-shrink: 1;
+		}
+		.PortalApp .loaderSpinner svg {
+			-webkit-animation: loader_spinner 2s infinite ease-in-out;
+			-moz-animation: loader_spinner 2s infinite ease-in-out;
+			-o-animation: loader_spinner 2s infinite ease-in-out;
+			-ms-animation: loader_spinner 2s infinite ease-in-out;
+			animation: loader_spinner 2s infinite ease-in-out;
+		}
+		.PortalApp .loaderSpinner.large > svg {
+			width: 60%;
+			height: 60%;
+		}
+		.PortalApp .loaderSpinner:not(.large) > svg {
+			width: 30px;
+			height: 30px;
+		}
+		.PortalApp .cover {
+			position: absolute;
+			z-index: 200;
+			height: 100%;
+			width: 100%;
+			top: 0px;
+			left: 0px;
+			background-color: white;
+		}
+	</style>
+	<title>Portal: An In-Browser Tiling Window Manager</title>
+<head>
+<body>
+	<div id="PortalApp" class="PortalApp main">
+		<div id="PortalAppInitialLoaderCover" class="loaderSpinner cover large theme opaqueScreen">
+			Loading...
+			<br/>
+			<svg class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	viewBox="326.27001953125 284.30902099609375 248.62103271484375 416.4000244140625" enable-background="new 0 0 21.783 21.971" xml:space="preserve">	<path d="M537.497,589.843c-12.307,25.096-24.01,44.408-35.641,58.804		c-40.593,50.243-77.133,52.062-100.904,45.292c3.027,0.862-36.441-10.212-56.849-59.435c-4.343-10.475-16.867-44.869-17.505-83.576		c-0.328-19.936,4.113-62.054,13.879-101.852c5.946-24.231,17.574-62.069,32.417-89.687c9.521-17.714,16.427-27.712,20.837-32.122		c3.995-3.993,6.035-3.474,4.419,1.411c-1.322,3.994-7.867,13.588-12.366,22.872c-6.728,13.887-24.24,49.926-18.379,43.597		c2.553-2.758,18.158-35.088,37.703-57.238c18.834-21.346,44.774-53.6,93.125-45.572c23.576,3.915,54.018,28.192,65.711,82.243		c3.578,16.532,10.947,59.57,6.484,97.792C569.042,484.241,556.587,550.909,537.497,589.843z M547.845,430.623		c0.082-26.453-11.352-65.364-10.955-61.694c0.317,2.93,2.28,14.966,2.809,27.74c0.66,15.95-0.16,33.058-0.472,35.128		c-3.431,22.74-8.521,45.034-12.025,52.893c-1.421,3.188-5.479,4.582-4.258-1.877c2.116-11.2,6.941-36.3,7.94-56.336		c0.064-1.286,2.995-28.818-5.476-54.807c-4.465-13.697-9.37-23.977-15.002-30.964c-8.817-10.939-18.062-14.41-19.803-14.916		c-9.279-2.701-20.599-2.418-31.695,2.621c-11.39,5.171-24.099,16.171-36.081,30.506c-12.777,15.286-24.219,35.224-33.381,54.174		c-14.777,30.566-20.804,63.349-20.804,63.349s-5.782,29.379-7.435,53.893c-2.572,38.138,1.624,65.303,8.002,85.492		c7.35,23.264,17.812,37.157,27.686,46.18c29.352,26.826,62.225,3.916,62.225,3.916s1.111-1.935-0.967-1.006		c-2.077,0.928-7.572,2.053-7.572,2.053s-28.301,5.88-47.041-18.748c-25.944-34.097-29.396-76.66-29.387-77.156		c0.107-5.157,2.866-4.67,3.577-1c1.677,8.65,8.718,32.75,18.837,48.255c10.986,16.834,26.154,22.904,26.154,22.904		s7.809,3.525,17.601,3.357c6.117-0.104,12.493-2.438,19.813-5.542c12.646-5.364,26.626-22.062,38.143-35.589		c29.549-34.711,42.396-102.179,42.396-102.179S547.742,463.848,547.845,430.623z"/></svg>
+			<script id="initialLoaderScript" type="text/javascript">
+				window.onload = function(){PortalApp.initialise();}
+			</script>
+		</div>
+	</div>
+<script type="text/javascript" src="./loader.js"></script><script type="text/javascript" src="./jquery.js"></script></body>
 </html>
