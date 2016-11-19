@@ -39,6 +39,7 @@ The Generalisation and Regression-Sweep Update
 See the full change log [here]](//github.com/MarcosCosmos/Portal/wiki/Changelog).
 
 #TODO
+- make css changes to improve the aesthetic of partially cut off header items
 - Possibly trasfer the TODO into milestones/issues
 - A more complete explanation of the configuration formats used/accepted by the app
 - Implement a GUI settings menu/popup
