@@ -107,6 +107,9 @@
 	<div id="PortalApp" class="PortalApp main">
 		<div id="PortalAppInitialLoaderCover" class="loaderSpinner cover large theme opaqueScreen">
 			Loading...
+			<script id="initialLoaderScript" type="text/javascript">
+				window.onload = function(){PortalApp.initialise();}
+			</script>
 		</div>
 	</div>
 <script type="text/javascript" src="./loader.js"></script><script type="text/javascript" src="./jquery.js"></script></body>
