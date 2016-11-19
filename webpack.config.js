@@ -64,14 +64,14 @@ module.exports =
 			  "jQuery": "jquery"
 		}),
 		new HtmlWebpackPlugin({
-			title: 'Portal: A Chatango Multi-Chat App',
+			title: 'Portal: An In-Browser Tiling Window Manager',
 			filename: 'index.html',
 			template: './src/init/index.html',
 			chunks:['loader','jquery']
 		}),
 
 		new HtmlWebpackPlugin({
-			title: 'Copyright & Credits - Portal: A Chatango Multi-Chat App',
+			title: 'Copyright & Credits - Portal: An In-Browser Tiling Window Manager',
 			filename: 'credits.html',
 			template: './src/content/pages/credits.html',
 			chunks: ['framedPage','jquery']

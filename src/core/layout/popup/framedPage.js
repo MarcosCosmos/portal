@@ -1,5 +1,9 @@
+////
+// This is code that should be run by default within framed pages
+////
 import {parseURL} from '../../../common/util.js';
 import '../../../css/common.scss';
+
 $(
     function()
     {
